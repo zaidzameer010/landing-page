@@ -1,0 +1,63 @@
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.faq-item {
+  @apply bg-white rounded-lg shadow-sm overflow-hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.faq-content {
+  @apply border-t border-gray-100;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+button:focus {
+  @apply outline-none ring-2 ring-blue-500 ring-opacity-50;
+}
+
+.faq-item button:hover {
+  @apply bg-gray-100;
+}
+
+/* Smooth transition for arrow rotation */
+svg {
+  @apply transition-transform duration-300 ease-in-out;
+}
+
+/* Hover effect for FAQ items */
+.faq-item:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Active state for FAQ items */
+.faq-item.active button {
+  @apply bg-gray-100;
+}
+
+/* Responsive text sizes */
+@screen sm {
+  h2 {
+    @apply text-4xl;
+  }
+  
+  .faq-item button span {
+    @apply text-lg;
+  }
+}
+
+/* Ensure content is visible when expanded */
+.faq-content[data-open="true"] {
+  max-height: 500px;
+}
+
+/* Hide content when collapsed */
+.faq-content[style*="height: 0"] {
+  visibility: hidden;
+}
+
+button svg {
+  transition: transform 0.2s ease;
+}

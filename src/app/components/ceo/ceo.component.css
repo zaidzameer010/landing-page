@@ -1,0 +1,66 @@
+/* Base reveal classes with performance optimizations */
+.reveal-slide-up,
+.reveal-slide-right,
+.reveal-slide-left {
+  opacity: 0;
+  transform: translateY(20px);  /* Reduced movement distance */
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);  /* Custom easing for smoother motion */
+  will-change: transform, opacity;  /* Hardware acceleration hint */
+  backface-visibility: hidden;  /* Prevent flickering */
+  perspective: 1000px;  /* 3D acceleration */
+}
+
+.reveal-slide-right {
+  transform: translateX(20px);  /* Reduced movement distance */
+}
+
+.reveal-slide-left {
+  transform: translateX(-20px);  /* Reduced movement distance */
+}
+
+/* Animation states with improved timing */
+.reveal-slide-up.animate,
+.reveal-slide-right.animate,
+.reveal-slide-left.animate {
+  opacity: 1;
+  transform: translate(0);
+}
+
+/* Optimized delay classes */
+.delay-100 {
+  transition-delay: 100ms;
+}
+
+.delay-200 {
+  transition-delay: 200ms;
+}
+
+.delay-300 {
+  transition-delay: 300ms;
+}
+
+.delay-400 {
+  transition-delay: 400ms;
+}
+
+/* Decorative elements with smoother transitions */
+.backdrop-blur-lg {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.backdrop-blur-lg:hover {
+  transform: translateY(-3px);  /* Reduced hover movement */
+}
+
+/* CEO section container */
+section[aria-labelledby="ceo-section-title"] {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.flex.flex-col.md\:grid.md\:grid-cols-2 {
+  width: 100%;
+}

@@ -1,0 +1,70 @@
+/* Enhanced text rendering */
+h1, p {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Gradient text animation */
+.text-transparent.bg-gradient-to-r {
+  background-size: 200% auto;
+  animation: gradientFlow 8s ease infinite;
+}
+
+/* Smooth hover transitions */
+.btn-animate {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.btn-animate:hover {
+  transform: translateY(-2px);
+}
+
+/* Parallax elements */
+.parallax-element {
+  will-change: transform;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.parallax-bg {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+/* Custom animations */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Text split animation */
+.animate-text span {
+  display: inline-block;
+  white-space: pre;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+/* Enhanced button styles */
+.btn-animate {
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2);
+  transform: translateZ(0);
+}
+
+.btn-animate:hover {
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* Smooth background blur transitions */
+.blur-3xl {
+  transition: filter 0.5s ease-out;
+}

@@ -1,0 +1,118 @@
+<section class="min-h-screen w-full bg-gradient-to-br from-blue-50 via-white to-blue-50 py-24">
+  <div class="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
+    <div class="text-center mb-16">
+      <h2 class="section-title text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 tracking-tight mb-4">
+        Calculate Your Investment
+      </h2>
+      <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+        Estimate the cost of your training program. Choose the modules that best fit your learning goals.
+      </p>
+    </div>
+
+    <!-- Main grid for first 6 cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-16 px-4 sm:px-0">
+      <ng-container *ngFor="let item of mainPricingItems">
+        <div class="pricing-card bg-white/98 backdrop-blur rounded-xl sm:rounded-2xl shadow-lg overflow-hidden transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl border border-blue-200 flex flex-col h-full"
+             [class.ring-2]="selectedItems.has(item.id)"
+             [class.ring-blue-500]="selectedItems.has(item.id)"
+             (mousemove)="onMouseMove($event, pricingCard)"
+             (mouseleave)="onMouseLeave(pricingCard)"
+             #pricingCard>
+          <div class="px-4 sm:px-6 py-6 sm:py-8 relative flex-grow">
+            <!-- Price Tag -->
+            <div class="absolute top-2 right-2">
+              <div class="inline-flex items-center justify-center px-3 sm:px-4 py-1 text-xs sm:text-sm font-bold leading-5 text-blue-600 bg-blue-50 rounded-full shadow-sm border border-blue-200">
+                ${{item.price}}
+              </div>
+            </div>
+            <!-- Service Title -->
+            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4">{{item.name}}</h3>
+            <!-- Description if available -->
+            <p *ngIf="item.description" class="text-gray-600 mb-4 text-xs sm:text-sm">
+              {{item.description}}
+            </p>
+            <!-- Sub Items if available -->
+            <div *ngIf="item.subItems" class="space-y-1.5 sm:space-y-2">
+              <div *ngFor="let subItem of item.subItems" 
+                   class="flex items-center text-xs sm:text-sm">
+                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-blue-300 mr-2"></span>
+                <span class="text-gray-600">{{subItem.name}}</span>
+                <span *ngIf="subItem.price > 0" class="ml-auto text-blue-600 font-medium">
+                  ${{subItem.price}}
+                </span>
+              </div>
+            </div>
+          </div>
+          <!-- Select Button -->
+          <div class="px-6 pb-6">
+            <button (click)="toggleItem(item.id)"
+                    class="w-full py-2 px-4 rounded-lg font-medium transition-all duration-300"
+                    [class.bg-blue-600]="selectedItems.has(item.id)"
+                    [class.text-white]="selectedItems.has(item.id)"
+                    [class.bg-blue-50]="!selectedItems.has(item.id)"
+                    [class.text-blue-600]="!selectedItems.has(item.id)"
+                    [class.hover:bg-blue-100]="!selectedItems.has(item.id)">
+              {{ selectedItems.has(item.id) ? 'Selected' : 'Select' }}
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- Post Job Support card (centered) -->
+    <div class="flex justify-center px-4 sm:px-0 mb-8">
+      <div class="w-full max-w-md">
+        <div class="pricing-card bg-white/98 backdrop-blur rounded-xl sm:rounded-2xl shadow-lg overflow-hidden transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl border border-blue-200 flex flex-col h-full"
+             [class.ring-2]="selectedItems.has(postJobSupportItem.id)"
+             [class.ring-blue-500]="selectedItems.has(postJobSupportItem.id)"
+             (mousemove)="onMouseMove($event, pricingCard)"
+             (mouseleave)="onMouseLeave(pricingCard)"
+             #pricingCard>
+          <div class="px-4 sm:px-6 py-6 sm:py-8 relative flex-grow">
+            <!-- Price Tag -->
+            <div class="absolute top-2 right-2">
+              <div class="inline-flex items-center justify-center px-3 sm:px-4 py-1 text-xs sm:text-sm font-bold leading-5 text-blue-600 bg-blue-50 rounded-full shadow-sm border border-blue-200">
+                ${{postJobSupportItem.price}}
+              </div>
+            </div>
+            <!-- Service Title -->
+            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4">{{postJobSupportItem.name}}</h3>
+            <!-- Description if available -->
+            <p *ngIf="postJobSupportItem.description" class="text-gray-600 mb-4 text-xs sm:text-sm">
+              {{postJobSupportItem.description}}
+            </p>
+          </div>
+          <!-- Select Button -->
+          <div class="px-6 pb-6">
+            <button (click)="toggleItem(postJobSupportItem.id)"
+                    class="w-full py-2 px-4 rounded-lg font-medium transition-all duration-300"
+                    [class.bg-blue-600]="selectedItems.has(postJobSupportItem.id)"
+                    [class.text-white]="selectedItems.has(postJobSupportItem.id)"
+                    [class.bg-blue-50]="!selectedItems.has(postJobSupportItem.id)"
+                    [class.text-blue-600]="!selectedItems.has(postJobSupportItem.id)"
+                    [class.hover:bg-blue-100]="!selectedItems.has(postJobSupportItem.id)">
+              {{ selectedItems.has(postJobSupportItem.id) ? 'Selected' : 'Select' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Total Price -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur shadow-lg border-t border-blue-100 p-3 sm:p-4 z-50 transform transition-transform duration-300 cursor-pointer hover:bg-white/100"
+         [class.translate-y-full]="selectedItems.size === 0"
+         [class.translate-y-0]="selectedItems.size > 0"
+         (click)="scrollToCalculator()">
+      <div class="max-w-7xl mx-auto flex justify-between items-center px-4">
+        <div>
+          <div class="text-base sm:text-lg font-medium text-gray-600">Total Price:</div>
+          <div class="text-xs sm:text-sm text-gray-500">{{selectedItems.size}} service{{selectedItems.size !== 1 ? 's' : ''}} selected</div>
+        </div>
+        <div class="text-xl sm:text-2xl font-bold text-blue-600">
+          ${{totalPrice}}
+          <div class="text-xs text-gray-500 text-right mt-1">Click to view details</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
