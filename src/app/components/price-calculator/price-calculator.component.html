@@ -12,12 +12,9 @@
     <!-- Main grid for first 6 cards -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-16 px-4 sm:px-0">
       <ng-container *ngFor="let item of mainPricingItems">
-        <div class="pricing-card bg-white/98 backdrop-blur rounded-xl sm:rounded-2xl shadow-lg overflow-hidden transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl border border-blue-200 flex flex-col h-full"
+        <div class="pricing-card bg-white/98 backdrop-blur rounded-xl sm:rounded-2xl shadow-lg overflow-hidden border border-blue-200 flex flex-col h-full"
              [class.ring-2]="selectedItems.has(item.id)"
-             [class.ring-blue-500]="selectedItems.has(item.id)"
-             (mousemove)="onMouseMove($event, pricingCard)"
-             (mouseleave)="onMouseLeave(pricingCard)"
-             #pricingCard>
+             [class.ring-blue-500]="selectedItems.has(item.id)">
           <div class="px-4 sm:px-6 py-6 sm:py-8 relative flex-grow">
             <!-- Price Tag -->
             <div class="absolute top-2 right-2">
@@ -50,8 +47,7 @@
                     [class.bg-blue-600]="selectedItems.has(item.id)"
                     [class.text-white]="selectedItems.has(item.id)"
                     [class.bg-blue-50]="!selectedItems.has(item.id)"
-                    [class.text-blue-600]="!selectedItems.has(item.id)"
-                    [class.hover:bg-blue-100]="!selectedItems.has(item.id)">
+                    [class.text-blue-600]="!selectedItems.has(item.id)">
               {{ selectedItems.has(item.id) ? 'Selected' : 'Select' }}
             </button>
           </div>
@@ -62,12 +58,9 @@
     <!-- Post Job Support card (centered) -->
     <div class="flex justify-center px-4 sm:px-0 mb-8">
       <div class="w-full max-w-md">
-        <div class="pricing-card bg-white/98 backdrop-blur rounded-xl sm:rounded-2xl shadow-lg overflow-hidden transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl border border-blue-200 flex flex-col h-full"
+        <div class="pricing-card bg-white/98 backdrop-blur rounded-xl sm:rounded-2xl shadow-lg overflow-hidden border border-blue-200 flex flex-col h-full"
              [class.ring-2]="selectedItems.has(postJobSupportItem.id)"
-             [class.ring-blue-500]="selectedItems.has(postJobSupportItem.id)"
-             (mousemove)="onMouseMove($event, pricingCard)"
-             (mouseleave)="onMouseLeave(pricingCard)"
-             #pricingCard>
+             [class.ring-blue-500]="selectedItems.has(postJobSupportItem.id)">
           <div class="px-4 sm:px-6 py-6 sm:py-8 relative flex-grow">
             <!-- Price Tag -->
             <div class="absolute top-2 right-2">
@@ -89,8 +82,7 @@
                     [class.bg-blue-600]="selectedItems.has(postJobSupportItem.id)"
                     [class.text-white]="selectedItems.has(postJobSupportItem.id)"
                     [class.bg-blue-50]="!selectedItems.has(postJobSupportItem.id)"
-                    [class.text-blue-600]="!selectedItems.has(postJobSupportItem.id)"
-                    [class.hover:bg-blue-100]="!selectedItems.has(postJobSupportItem.id)">
+                    [class.text-blue-600]="!selectedItems.has(postJobSupportItem.id)">
               {{ selectedItems.has(postJobSupportItem.id) ? 'Selected' : 'Select' }}
             </button>
           </div>
@@ -109,7 +101,7 @@
           <div class="text-xs sm:text-sm text-gray-500">{{selectedItems.size}} service{{selectedItems.size !== 1 ? 's' : ''}} selected</div>
         </div>
         <div class="text-xl sm:text-2xl font-bold text-blue-600">
-          ${{totalPrice}}
+          ${{getTotalPrice()}}
           <div class="text-xs text-gray-500 text-right mt-1">Click to view details</div>
         </div>
       </div>
