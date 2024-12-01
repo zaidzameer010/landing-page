@@ -25,15 +25,34 @@
 }
 
 /* Welcome Section Styles */
+.welcome-section {
+  position: relative;
+}
+
 .welcome-section h2 {
   background-size: 200% auto;
   animation: shimmer 3s linear infinite;
+}
+
+/* SVG Line Styles */
+.connecting-lines svg {
+  pointer-events: none;
+}
+
+.connecting-lines path {
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
 }
 
 /* Service Cards Styles */
 .service-card {
   position: relative;
   isolation: isolate;
+}
+
+.grid {
+  position: relative;
+  z-index: 2;
 }
 
 .service-card > div {
