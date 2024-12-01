@@ -55,24 +55,12 @@ const PRICING_ITEMS: PricingItem[] = [
     ]
   },
   {
-    id: '6',
-    name: 'Technical Training Package',
-    price: 1250,
-    subItems: [
-      { name: 'LinkedIn', price: 50 },
-      { name: 'Resume', price: 50 },
-      { name: 'Referrals', price: 50 },
-      { name: "Directors' Advice", price: 100 },
-      { name: 'Experience', price: 1000 }
-    ]
+    id: '7',
+    name: 'Post Job Support',
+    price: 300,
+    description: 'Continuous support after securing your position'
   }
 ];
-
-const POST_JOB_SUPPORT_ITEM: PricingItem = {
-  id: '7',
-  name: 'Post Job Support',
-  price: 300
-};
 
 @Component({
   selector: 'app-price-calculator',
@@ -82,33 +70,12 @@ const POST_JOB_SUPPORT_ITEM: PricingItem = {
   imports: [CommonModule]
 })
 export class PriceCalculatorComponent implements OnInit {
-  selectedItems: Set<string> = new Set();
   mainPricingItems = PRICING_ITEMS;
-  postJobSupportItem = POST_JOB_SUPPORT_ITEM;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit() {
     this.initializeAnimations();
-  }
-
-  toggleItem(id: string) {
-    if (this.selectedItems.has(id)) {
-      this.selectedItems.delete(id);
-    } else {
-      this.selectedItems.add(id);
-    }
-  }
-
-  getTotalPrice(): number {
-    let total = 0;
-    for (const id of this.selectedItems) {
-      const item = [...this.mainPricingItems, this.postJobSupportItem].find(i => i.id === id);
-      if (item) {
-        total += item.price;
-      }
-    }
-    return total;
   }
 
   initializeAnimations() {
@@ -119,15 +86,5 @@ export class PriceCalculatorComponent implements OnInit {
       stagger: 0.1,
       ease: 'power3.out'
     });
-  }
-
-  scrollToCalculator() {
-    const calculatorSection = document.querySelector('app-price-calculator');
-    if (calculatorSection) {
-      calculatorSection.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
   }
 }

@@ -1,108 +1,58 @@
-<section class="min-h-screen w-full bg-gradient-to-br from-blue-50 via-white to-blue-50 py-24">
-  <div class="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
-    <div class="text-center mb-16">
-      <h2 class="section-title text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 tracking-tight mb-4">
+<section class="min-h-screen w-full bg-gradient-to-br from-blue-50 via-white to-blue-50 py-12">
+  <div class="max-w-4xl mx-auto px-6 md:px-8 lg:px-12">
+    <div class="text-center mb-10">
+      <h2 class="section-title text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 tracking-tight mb-3">
         Calculate Your Investment
       </h2>
       <p class="text-gray-600 max-w-2xl mx-auto text-lg">
-        Estimate the cost of market value for this training.
+        Customize your training package to match your career goals
       </p>
     </div>
 
-    <!-- Main grid for first 6 cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-16 px-4 sm:px-0">
-      <ng-container *ngFor="let item of mainPricingItems">
-        <div class="pricing-card bg-white/98 backdrop-blur rounded-xl sm:rounded-2xl shadow-lg overflow-hidden border border-blue-200 flex flex-col h-full"
-             [class.ring-2]="selectedItems.has(item.id)"
-             [class.ring-blue-500]="selectedItems.has(item.id)">
-          <div class="px-4 sm:px-6 py-6 sm:py-8 relative flex-grow">
-            <!-- Price Tag -->
-            <div class="absolute top-2 right-2">
-              <div class="inline-flex items-center justify-center px-3 sm:px-4 py-1 text-xs sm:text-sm font-bold leading-5 text-blue-600 bg-blue-50 rounded-full shadow-sm border border-blue-200">
-                ${{item.price}}
+    <!-- Unified Price Calculator Card -->
+    <div class="bg-white/98 backdrop-blur rounded-2xl shadow-xl border border-blue-100 overflow-hidden">
+      <!-- Package Categories -->
+      <div class="divide-y divide-blue-100">
+        <div class="p-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <ng-container *ngFor="let item of mainPricingItems">
+              <div class="bg-white rounded-xl border border-blue-100 p-4 hover:shadow-md transition-all duration-200">
+                <div class="flex justify-between items-start mb-2">
+                  <h4 class="font-semibold text-gray-800">{{item.name}}</h4>
+                  <span class="text-blue-600 font-bold">${{item.price}}</span>
+                </div>
+                <p *ngIf="item.description" class="text-sm text-gray-600 mb-1">{{item.description}}</p>
+                <div *ngIf="item.subItems" class="space-y-1">
+                  <div *ngFor="let subItem of item.subItems" 
+                       class="flex items-center text-xs text-gray-500">
+                    <span class="w-1 h-1 rounded-full bg-blue-300 mr-1.5"></span>
+                    <span>{{subItem.name}}</span>
+                    <span *ngIf="subItem.price > 0" class="ml-auto text-blue-600">
+                      +${{subItem.price}}
+                    </span>
+                  </div>
+                </div>
               </div>
-            </div>
-            <!-- Service Title -->
-            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4">{{item.name}}</h3>
-            <!-- Description if available -->
-            <p *ngIf="item.description" class="text-gray-600 mb-4 text-xs sm:text-sm">
-              {{item.description}}
-            </p>
-            <!-- Sub Items if available -->
-            <div *ngIf="item.subItems" class="space-y-1.5 sm:space-y-2">
-              <div *ngFor="let subItem of item.subItems" 
-                   class="flex items-center text-xs sm:text-sm">
-                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-blue-300 mr-2"></span>
-                <span class="text-gray-600">{{subItem.name}}</span>
-                <span *ngIf="subItem.price > 0" class="ml-auto text-blue-600 font-medium">
-                  ${{subItem.price}}
-                </span>
-              </div>
-            </div>
-          </div>
-          <!-- Select Button -->
-          <div class="px-6 pb-6">
-            <button (click)="toggleItem(item.id)"
-                    class="w-full py-2 px-4 rounded-lg font-medium transition-all duration-300"
-                    [class.bg-blue-600]="selectedItems.has(item.id)"
-                    [class.text-white]="selectedItems.has(item.id)"
-                    [class.bg-blue-50]="!selectedItems.has(item.id)"
-                    [class.text-blue-600]="!selectedItems.has(item.id)">
-              {{ selectedItems.has(item.id) ? 'Selected' : 'Select' }}
-            </button>
+            </ng-container>
           </div>
         </div>
-      </ng-container>
-    </div>
 
-    <!-- Post Job Support card (centered) -->
-    <div class="flex justify-center px-4 sm:px-0 mb-8">
-      <div class="w-full max-w-md">
-        <div class="pricing-card bg-white/98 backdrop-blur rounded-xl sm:rounded-2xl shadow-lg overflow-hidden border border-blue-200 flex flex-col h-full"
-             [class.ring-2]="selectedItems.has(postJobSupportItem.id)"
-             [class.ring-blue-500]="selectedItems.has(postJobSupportItem.id)">
-          <div class="px-4 sm:px-6 py-6 sm:py-8 relative flex-grow">
-            <!-- Price Tag -->
-            <div class="absolute top-2 right-2">
-              <div class="inline-flex items-center justify-center px-3 sm:px-4 py-1 text-xs sm:text-sm font-bold leading-5 text-blue-600 bg-blue-50 rounded-full shadow-sm border border-blue-200">
-                ${{postJobSupportItem.price}}
-              </div>
+        <!-- Total Price Summary -->
+        <div class="p-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+          <div class="flex justify-between items-center">
+            <div>
+              <h4 class="font-semibold">Total Investment</h4>
+              <p class="text-blue-100 text-sm">Contact us to customize your package</p>
             </div>
-            <!-- Service Title -->
-            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4">{{postJobSupportItem.name}}</h3>
-            <!-- Description if available -->
-            <p *ngIf="postJobSupportItem.description" class="text-gray-600 mb-4 text-xs sm:text-sm">
-              {{postJobSupportItem.description}}
-            </p>
+            <div class="text-right">
+              <a href="https://zohosecurepay.in/checkout/dw7jpdro-sv9cskywixedq/Mastering-MultiCloud-Data-Migration-with-the-Power-of-Generative-AI" 
+                 target="_blank" 
+                 rel="noopener noreferrer" 
+                 class="inline-block px-4 py-1.5 bg-white text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-50 transition-colors duration-200">
+                Get Started
+              </a>
+            </div>
           </div>
-          <!-- Select Button -->
-          <div class="px-6 pb-6">
-            <button (click)="toggleItem(postJobSupportItem.id)"
-                    class="w-full py-2 px-4 rounded-lg font-medium transition-all duration-300"
-                    [class.bg-blue-600]="selectedItems.has(postJobSupportItem.id)"
-                    [class.text-white]="selectedItems.has(postJobSupportItem.id)"
-                    [class.bg-blue-50]="!selectedItems.has(postJobSupportItem.id)"
-                    [class.text-blue-600]="!selectedItems.has(postJobSupportItem.id)">
-              {{ selectedItems.has(postJobSupportItem.id) ? 'Selected' : 'Select' }}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Total Price -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur shadow-lg border-t border-blue-100 p-3 sm:p-4 z-50 transform transition-transform duration-300 cursor-pointer hover:bg-white/100"
-         [class.translate-y-full]="selectedItems.size === 0"
-         [class.translate-y-0]="selectedItems.size > 0"
-         (click)="scrollToCalculator()">
-      <div class="max-w-7xl mx-auto flex justify-between items-center px-4">
-        <div>
-          <div class="text-base sm:text-lg font-medium text-gray-600">Total Price:</div>
-          <div class="text-xs sm:text-sm text-gray-500">{{selectedItems.size}} service{{selectedItems.size !== 1 ? 's' : ''}} selected</div>
-        </div>
-        <div class="text-xl sm:text-2xl font-bold text-blue-600">
-          ${{getTotalPrice()}}
-          <div class="text-xs text-gray-500 text-right mt-1">Click to view details</div>
         </div>
       </div>
     </div>
