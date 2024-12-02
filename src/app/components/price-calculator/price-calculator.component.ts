@@ -71,6 +71,22 @@ const PRICING_ITEMS: PricingItem[] = [
 })
 export class PriceCalculatorComponent implements OnInit {
   mainPricingItems = PRICING_ITEMS;
+  selectedSubItems: { [key: string]: boolean } = {};
+
+  getTotalPrice(): number {
+    return this.mainPricingItems.reduce((total, item) => {
+      // Always add the base price
+      let itemTotal = item.price;
+
+      // Only add sub-item prices if they are marked as selected
+      if (item.subItems) {
+        // For now, we'll consider only the base prices since sub-items appear to be included
+        // in the main item price or are optional add-ons that need user selection
+        // itemTotal += item.subItems.reduce((subTotal, subItem) => subTotal + subItem.price, 0);
+      }
+      return total + itemTotal;
+    }, 0);
+  }
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
