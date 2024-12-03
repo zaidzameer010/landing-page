@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ElementRef, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -12,33 +12,47 @@ gsap.registerPlugin(ScrollTrigger);
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.css']
 })
-export class HeroComponent implements OnInit, OnDestroy {
-  private timeline: gsap.core.Timeline = gsap.timeline();
+export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild('heroVideo') private videoElement!: ElementRef<HTMLVideoElement>;
+  private timeline: gsap.core.Timeline;
   private parallaxElements: ScrollTrigger[] = [];
+  private videoEventListeners: { event: string; listener: EventListener }[] = [];
 
-  constructor(private el: ElementRef) {}
+  constructor(private el: ElementRef) {
+    this.timeline = gsap.timeline({
+      defaults: { ease: 'power2.out' }
+    });
+  }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.initAnimations();
     this.initParallax();
   }
 
-  ngOnDestroy() {
+  ngAfterViewInit(): void {
+    this.initVideo();
+  }
+
+  ngOnDestroy(): void {
     // Clean up animations
     if (this.timeline) {
       this.timeline.kill();
     }
+    
+    // Clean up scroll triggers
     this.parallaxElements.forEach(trigger => trigger.kill());
+    
+    // Clean up video event listeners
+    if (this.videoElement?.nativeElement) {
+      this.videoEventListeners.forEach(({ event, listener }) => {
+        this.videoElement.nativeElement.removeEventListener(event, listener);
+      });
+    }
   }
 
-  private initAnimations() {
+  private initAnimations(): void {
     const element = this.el.nativeElement;
     
-    // Reset timeline
-    this.timeline = gsap.timeline({
-      defaults: { ease: 'power2.out' }
-    });
-
     // Fade in logo with bounce
     this.timeline.from('.logo-container', {
       y: -50,
@@ -54,7 +68,9 @@ export class HeroComponent implements OnInit, OnDestroy {
       el.textContent = '';
       
       // Split text into spans
-      const chars = text.split('').map(char => `<span class="inline-block">${char}</span>`).join('');
+      const chars = text.split('').map(char => 
+        `<span class="inline-block">${char === ' ' ? '&nbsp;' : char}</span>`
+      ).join('');
       el.innerHTML = chars;
       
       // Animate each character
@@ -79,7 +95,7 @@ export class HeroComponent implements OnInit, OnDestroy {
     }, '>-0.2');
   }
 
-  private initParallax() {
+  private initParallax(): void {
     const element = this.el.nativeElement;
 
     // Parallax effect for background elements
@@ -121,6 +137,63 @@ export class HeroComponent implements OnInit, OnDestroy {
         }
       });
       this.parallaxElements.push(trigger);
+    });
+  }
+
+  private initVideo(): void {
+    if (!this.videoElement?.nativeElement) return;
+
+    const video = this.videoElement.nativeElement;
+    video.load();
+
+    const setPlaybackRate = () => {
+      if (video) {
+        video.playbackRate = 0.8;
+      }
+    };
+
+    const handlePlayback = () => {
+      if (!video) return;
+
+      setPlaybackRate();
+      video.play()
+        .then(() => {
+          setPlaybackRate(); // Set again after successful play
+        })
+        .catch((error: Error) => {
+          console.error('Video playback failed:', error);
+          // Retry once after a delay
+          setTimeout(() => {
+            if (video) {
+              video.play()
+                .then(() => {
+                  setPlaybackRate();
+                })
+                .catch((retryError: Error) => {
+                  console.error('Retry failed:', retryError);
+                });
+            }
+          }, 1000);
+        });
+    };
+
+    // Add event listeners
+    const loadedMetadataListener = () => handlePlayback();
+    const rateChangeListener = () => {
+      if (video && video.playbackRate !== 0.8) {
+        setPlaybackRate();
+      }
+    };
+
+    // Store listeners for cleanup
+    this.videoEventListeners = [
+      { event: 'loadedmetadata', listener: loadedMetadataListener },
+      { event: 'ratechange', listener: rateChangeListener }
+    ];
+
+    // Add listeners to video element
+    this.videoEventListeners.forEach(({ event, listener }) => {
+      video.addEventListener(event, listener);
     });
   }
 }

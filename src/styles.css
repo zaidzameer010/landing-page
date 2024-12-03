@@ -883,3 +883,55 @@
     display: none;
   }
 }
+
+/* Glassmorphism effect for all cards */
+.service-card > div,
+.benefit-card > div,
+.pricing-card {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Enhanced hover effects for cards */
+.service-card:hover > div,
+.benefit-card:hover > div,
+.pricing-card:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25) !important;
+  transform: translateY(-5px);
+}
+
+/* Card backgrounds */
+.service-card > div,
+.benefit-card > div,
+.pricing-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+/* Card background gradient */
+.service-card > div::before,
+.benefit-card > div::before,
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+/* Ensure content stays above the background */
+.card-content {
+  position: relative;
+  z-index: 1;
+}

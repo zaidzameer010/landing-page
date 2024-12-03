@@ -68,3 +68,9 @@ h1, p {
 .blur-3xl {
   transition: filter 0.5s ease-out;
 }
+
+/* Video background styles */
+video {
+  filter: blur(2px);
+  transform: scale(1.02); /* Slight scale to prevent blur edges */
+}
