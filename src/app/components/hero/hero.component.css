@@ -64,6 +64,29 @@ h1, p {
   box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
 }
 
+/* Liquid button hover styles */
+.liquid-button {
+  transition: all 0.3s ease;
+}
+
+.liquid-button:hover {
+  color: rgb(26,94,212);
+}
+
+.liquid-button .relative {
+  transition: all 0.3s ease;
+}
+
+.liquid-button div {
+  transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transform: skewX(-12deg);
+  transform-origin: right;
+}
+
+.liquid-button:hover div {
+  transform: skewX(-12deg) translateX(0);
+}
+
 /* Smooth background blur transitions */
 .blur-3xl {
   transition: filter 0.5s ease-out;

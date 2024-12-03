@@ -141,11 +141,16 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private initVideo(): void {
-    if (!this.videoElement?.nativeElement) return;
+    if (!this.videoElement?.nativeElement) {
+      console.error('Video element not found');
+      return;
+    }
 
     const video = this.videoElement.nativeElement;
-    video.load();
-
+    
+    // Ensure video is muted (some browsers require this for autoplay)
+    video.muted = true;
+    
     const setPlaybackRate = () => {
       if (video) {
         video.playbackRate = 0.8;
@@ -155,45 +160,65 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
     const handlePlayback = () => {
       if (!video) return;
 
-      setPlaybackRate();
-      video.play()
-        .then(() => {
-          setPlaybackRate(); // Set again after successful play
-        })
-        .catch((error: Error) => {
-          console.error('Video playback failed:', error);
-          // Retry once after a delay
-          setTimeout(() => {
-            if (video) {
-              video.play()
-                .then(() => {
-                  setPlaybackRate();
-                })
-                .catch((retryError: Error) => {
-                  console.error('Retry failed:', retryError);
-                });
-            }
-          }, 1000);
-        });
+      // Ensure video is loaded
+      if (video.readyState >= 2) {
+        setPlaybackRate();
+        video.play()
+          .then(() => {
+            console.log('Video playing successfully');
+            setPlaybackRate(); // Set again after successful play
+          })
+          .catch((error: Error) => {
+            console.error('Video playback failed:', error);
+            // Retry with a fallback approach
+            video.muted = true; // Ensure muted as fallback
+            video.play()
+              .then(() => {
+                console.log('Video playing after fallback');
+                setPlaybackRate();
+              })
+              .catch((retryError: Error) => {
+                console.error('Video playback failed after retry:', retryError);
+              });
+          });
+      } else {
+        // Wait for more data if not enough is loaded
+        video.addEventListener('canplay', handlePlayback, { once: true });
+      }
     };
 
     // Add event listeners
-    const loadedMetadataListener = () => handlePlayback();
+    const loadedMetadataListener = () => {
+      console.log('Video metadata loaded');
+      handlePlayback();
+    };
+    
     const rateChangeListener = () => {
       if (video && video.playbackRate !== 0.8) {
         setPlaybackRate();
       }
     };
 
+    const errorListener = (e: Event) => {
+      console.error('Video error:', (e as ErrorEvent).error);
+    };
+
     // Store listeners for cleanup
     this.videoEventListeners = [
       { event: 'loadedmetadata', listener: loadedMetadataListener },
-      { event: 'ratechange', listener: rateChangeListener }
+      { event: 'ratechange', listener: rateChangeListener },
+      { event: 'error', listener: errorListener }
     ];
 
     // Add listeners to video element
     this.videoEventListeners.forEach(({ event, listener }) => {
       video.addEventListener(event, listener);
     });
+
+    // Start loading the video
+    video.load();
+    
+    // Try initial playback
+    handlePlayback();
   }
 }
