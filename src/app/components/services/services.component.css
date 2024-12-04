@@ -41,7 +41,7 @@
 
 .connecting-lines path {
   stroke-linecap: round;
-  vector-effect: non-scaling-stroke;
+  
 }
 
 /* Service Cards Styles */
