@@ -11,9 +11,15 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    height: 100%;
+    -webkit-overflow-scrolling: touch; /* For iOS smooth scrolling */
   }
   body {
+    scroll-behavior: smooth;
+    height: 100%;
     @apply bg-white text-gray-900;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* For iOS smooth scrolling */
   }
 }
 

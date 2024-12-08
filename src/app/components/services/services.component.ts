@@ -42,34 +42,29 @@ export class ServicesComponent implements OnInit, AfterViewInit {
       this.observer?.observe(card.nativeElement);
     });
 
-    // Optional: Keep GSAP animations for desktop
-    if (window.matchMedia('(hover: hover)').matches) {
-      this.initHoverAnimations();
-    }
+    this.initAnimations();
   }
 
-  private initHoverAnimations() {
-    this.serviceCards.forEach(card => {
-      const element = card.nativeElement;
-      
-      element.addEventListener('mouseenter', () => {
-        gsap.to(element.querySelector('svg'), {
-          scale: 1.1,
-          rotate: 5,
-          duration: 0.3,
-          ease: 'back.out(1.5)'
+  private initAnimations() {
+    if (this.serviceCards) {
+      // Animate each service card
+      this.serviceCards.forEach((card, index) => {
+        gsap.from(card.nativeElement, {
+          scrollTrigger: {
+            trigger: card.nativeElement,
+            start: 'top 80%', // Start animation when the top of the card hits 80% of the viewport
+            end: 'bottom 20%', // End animation when the bottom of the card hits 20% of the viewport
+            toggleActions: 'play none none reverse', // Play on enter, pause on leave, none on leave-back, reverse on enter-back
+            markers: false // Remove in production
+          },
+          opacity: 0,
+          y: 50,
+          duration: 0.6,
+          delay: index * 0.1,
+          ease: 'power3.out'
         });
       });
-
-      element.addEventListener('mouseleave', () => {
-        gsap.to(element.querySelector('svg'), {
-          scale: 1,
-          rotate: 0,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-      });
-    });
+    }
   }
 
   ngOnDestroy() {

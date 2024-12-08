@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SmoothScrollService } from '../../services/smooth-scroll.service';
 
 @Component({
   selector: 'app-scroll-to-top',
@@ -43,15 +44,14 @@ import { CommonModule } from '@angular/common';
 export class ScrollToTopComponent {
   showScrollButton = false;
 
+  constructor(private smoothScrollService: SmoothScrollService) {}
+
   @HostListener('window:scroll')
   onWindowScroll() {
     this.showScrollButton = window.scrollY > 500;
   }
 
   scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    this.smoothScrollService.scrollToTop();
   }
 }
