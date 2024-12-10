@@ -19,7 +19,7 @@
               <div class="bg-white rounded-xl border border-blue-100 p-4 hover:shadow-md transition-all duration-200">
                 <div class="flex justify-between items-start mb-2">
                   <h4 class="font-semibold text-gray-800">{{item.name}}</h4>
-                  <span class="text-blue-600 font-bold">${{item.price}}</span>
+                  <span class="text-blue-600 font-bold"><span class="line-through decoration-2">${{item.price}}</span></span>
                 </div>
                 <p *ngIf="item.description" class="text-sm text-gray-600 mb-1">{{item.description}}</p>
                 <div *ngIf="item.subItems" class="space-y-1">
@@ -28,7 +28,7 @@
                     <span class="w-1 h-1 rounded-full bg-blue-300 mr-1.5"></span>
                     <span>{{subItem.name}}</span>
                     <span *ngIf="subItem.price > 0" class="ml-auto text-blue-600">
-                      +${{subItem.price}}
+                      <span class="line-through decoration-2">+${{subItem.price}}</span>
                     </span>
                   </div>
                 </div>
@@ -45,7 +45,10 @@
               <p class="text-blue-100 text-sm">Contact us to customize your package</p>
             </div>
             <div class="text-right flex items-center gap-4">
-              <span class="text-2xl font-bold">${{getTotalPrice()}}</span>
+              <span class="text-2xl font-bold">
+                <span class="line-through decoration-2 text-xl opacity-80">${{getTotalPrice()}}</span>
+                <span class="ml-2 text-white font-extrabold text-3xl drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]">₹21,000</span>
+              </span>
               <a href="https://zohosecurepay.in/checkout/jv54zj73-qbu5qg2lv4yvj/Lets-Build-A-Career-In-IT" 
                  target="_blank" 
                  rel="noopener noreferrer" 
