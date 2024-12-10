@@ -1,18 +1,28 @@
 import { Component, OnInit, ElementRef, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SectionTitleComponent } from '../section-title/section-title.component';
 
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-services',
   standalone: true,
+  imports: [CommonModule, SectionTitleComponent],
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.css']
 })
 export class ServicesComponent implements OnInit, AfterViewInit {
   @ViewChildren('dataPrep, dataAvailability, dataDisc') serviceCards!: QueryList<ElementRef>;
   private observer: IntersectionObserver | null = null;
+
+  // Section title data
+  sectionData = {
+    badge: 'Our Services',
+    title: 'Comprehensive IT Training Solutions',
+    subtitle: 'Master the latest technologies and advance your career with our specialized training programs'
+  };
 
   constructor() {}
 

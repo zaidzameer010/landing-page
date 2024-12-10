@@ -1,6 +1,9 @@
-import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
+import { TimerService } from '../../services/timer.service';
+import { HttpClientModule } from '@angular/common/http';
+import { Subscription, catchError, of } from 'rxjs';
 
 interface PricingItem {
   id: string;
@@ -67,18 +70,83 @@ const PRICING_ITEMS: PricingItem[] = [
   templateUrl: './price-calculator.component.html',
   styleUrls: ['./price-calculator.component.scss'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, HttpClientModule]
 })
-export class PriceCalculatorComponent implements OnInit {
+export class PriceCalculatorComponent implements OnInit, OnDestroy {
   mainPricingItems = PRICING_ITEMS;
   selectedSubItems: { [key: string]: boolean } = {};
+  remainingTime: string = '15:00';
+  private timerSubscription?: Subscription;
+  private ipSubscription?: Subscription;
+  private expiredSubscription?: Subscription;
+  isTimerExpired: boolean = false;
+  currentIp: string = '';
+  isInitialized: boolean = false;
+
+  constructor(
+    private elementRef: ElementRef, 
+    private renderer: Renderer2,
+    private timerService: TimerService
+  ) {}
+
+  ngOnInit() {
+    this.initializeAnimations();
+    this.initializeTimer();
+  }
+
+  ngOnDestroy() {
+    this.cleanupSubscriptions();
+  }
+
+  private cleanupSubscriptions() {
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+    }
+    if (this.ipSubscription) {
+      this.ipSubscription.unsubscribe();
+    }
+    if (this.expiredSubscription) {
+      this.expiredSubscription.unsubscribe();
+    }
+  }
+
+  private initializeTimer() {
+    if (this.isInitialized) return;
+
+    this.ipSubscription = this.timerService.getIPAddress()
+      .pipe(
+        catchError(error => {
+          console.error('Error fetching IP address:', error);
+          return of('local-' + Date.now());
+        })
+      )
+      .subscribe(ip => {
+        this.currentIp = ip;
+        this.isInitialized = true;
+        this.timerService.initializeTimer(ip);
+        this.setupTimerSubscriptions();
+      });
+  }
+
+  private setupTimerSubscriptions() {
+    this.timerSubscription = this.timerService.getTimer().subscribe(time => {
+      this.remainingTime = this.timerService.formatTime(time);
+    });
+
+    this.expiredSubscription = this.timerService.getIsExpired().subscribe(isExpired => {
+      this.isTimerExpired = isExpired;
+    });
+  }
+
+  resetTimer() {
+    if (this.isTimerExpired && this.currentIp) {
+      this.timerService.resetTimer(this.currentIp);
+    }
+  }
 
   getTotalPrice(): number {
     return this.mainPricingItems.reduce((total, item) => {
-      // Always add the base price
       let itemTotal = item.price;
-
-      // Only add sub-item prices if they are marked as selected
       if (item.subItems) {
         // For now, we'll consider only the base prices since sub-items appear to be included
         // in the main item price or are optional add-ons that need user selection
@@ -86,12 +154,6 @@ export class PriceCalculatorComponent implements OnInit {
       }
       return total + itemTotal;
     }, 0);
-  }
-
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
-
-  ngOnInit() {
-    this.initializeAnimations();
   }
 
   initializeAnimations() {
