@@ -19,9 +19,9 @@ export class ServicesComponent implements OnInit, AfterViewInit {
 
   // Section title data
   sectionData = {
-    badge: 'Our Services',
+    badge: '3 Steps to Success',
     title: 'Comprehensive IT Training Solutions',
-    subtitle: 'Master the latest technologies and advance your career with our specialized training programs'
+    subtitle: 'Master in-demand technologies with focused all-in-one training program'
   };
 
   constructor() {}
