@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface Testimonial {
@@ -26,9 +26,9 @@ interface Testimonial {
         <!-- Video Container -->
         <div class="relative max-w-7xl mx-auto">
           <!-- Videos -->
-          <div class="flex space-x-6 overflow-hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div *ngFor="let testimonial of visibleTestimonials" 
-                 class="flex-none w-[calc(25%-1.25rem)]">
+                 class="w-full">
               <div class="bg-white rounded-lg border border-gray-100 overflow-hidden shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)]">
                 <div class="relative pt-[56.25%]">
                   <video 
@@ -36,7 +36,11 @@ interface Testimonial {
                     class="absolute inset-0 w-full h-full object-cover"
                     controls
                     controlsList="nodownload"
-                    preload="metadata">
+                    preload="metadata"
+                    (fullscreenchange)="handleFullscreenChange($event)"
+                    (webkitfullscreenchange)="handleFullscreenChange($event)"
+                    (mozfullscreenchange)="handleFullscreenChange($event)"
+                    (MSFullscreenChange)="handleFullscreenChange($event)">
                   </video>
                 </div>
                 <div class="px-4 py-3 border-t border-gray-100">
@@ -47,7 +51,7 @@ interface Testimonial {
           </div>
 
           <!-- Navigation Buttons -->
-          <div class="absolute -right-12 top-1/2 -translate-y-1/2 flex flex-col gap-4">
+          <div class="flex justify-center mt-8 gap-4 md:absolute md:-right-12 md:top-1/2 md:-translate-y-1/2 md:flex-col">
             <button 
               (click)="showPreviousVideos()"
               class="p-3 rounded-full bg-white border border-gray-100 shadow-[0_2px_8px_-3px_rgba(0,0,0,0.1)] hover:bg-gray-50 transition-colors">
@@ -68,9 +72,10 @@ interface Testimonial {
     </section>
   `
 })
-export class TestimonialsComponent implements OnInit {
+export class TestimonialsComponent implements OnInit, OnDestroy {
   currentIndex = 0;
   videosPerPage = 4;
+  private scrollPosition = 0;
 
   testimonials: Testimonial[] = [
     {
@@ -163,6 +168,26 @@ export class TestimonialsComponent implements OnInit {
     }
   ];
 
+  handleFullscreenChange(event: Event) {
+    const isFullscreen = document.fullscreenElement || 
+                        (document as any).webkitFullscreenElement || 
+                        (document as any).mozFullScreenElement || 
+                        (document as any).msFullscreenElement;
+    
+    if (!isFullscreen) {
+      // When exiting fullscreen, restore the scroll position after a short delay
+      setTimeout(() => {
+        window.scrollTo({
+          top: this.scrollPosition,
+          behavior: 'instant'
+        });
+      }, 100);
+    } else {
+      // Store the current scroll position when entering fullscreen
+      this.scrollPosition = window.scrollY;
+    }
+  }
+
   get visibleTestimonials(): Testimonial[] {
     const startIndex = this.currentIndex;
     const endIndex = startIndex + this.videosPerPage;
@@ -183,13 +208,16 @@ export class TestimonialsComponent implements OnInit {
     if (prevIndex >= 0) {
       this.currentIndex = prevIndex;
     } else {
-      // Go to the last complete set of videos
       const lastSetIndex = Math.floor((this.testimonials.length - 1) / this.videosPerPage) * this.videosPerPage;
       this.currentIndex = lastSetIndex;
     }
   }
 
   ngOnInit() {
-    // No need to slice the testimonials array anymore
+    // No initialization needed
+  }
+
+  ngOnDestroy() {
+    // Clean up if needed
   }
 } 
