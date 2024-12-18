@@ -8,7 +8,20 @@ h1, p {
 /* Gradient text animation */
 .text-transparent.bg-gradient-to-r {
   background-size: 200% auto;
-  animation: gradientFlow 8s ease infinite;
+  background-image: linear-gradient(
+    90deg,
+    #1a5ed4 0%,
+    #3d94fd 35%,
+    #1a5ed4 65%,
+    #3d94fd 100%
+  );
+  animation: subtleGradientMove 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 0px #3d94fd);
+  transition: filter 0.3s ease;
+}
+
+.text-transparent.bg-gradient-to-r:hover {
+  filter: drop-shadow(0 0 8px #3d94fd) drop-shadow(0 0 32px rgba(61, 148, 253, 0.5));
 }
 
 /* Smooth hover transitions */
@@ -34,7 +47,7 @@ h1, p {
 }
 
 /* Custom animations */
-@keyframes gradientFlow {
+@keyframes subtleGradientMove {
   0% {
     background-position: 0% 50%;
   }
