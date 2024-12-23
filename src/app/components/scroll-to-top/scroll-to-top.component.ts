@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SmoothScrollService } from '../../services/smooth-scroll.service';
+import { ScrollSmootherService } from '../../services/scroll-smoother.service';
 
 @Component({
   selector: 'app-scroll-to-top',
@@ -44,14 +44,20 @@ import { SmoothScrollService } from '../../services/smooth-scroll.service';
 export class ScrollToTopComponent {
   showScrollButton = false;
 
-  constructor(private smoothScrollService: SmoothScrollService) {}
+  constructor(private scrollSmootherService: ScrollSmootherService) {}
 
   @HostListener('window:scroll')
   onWindowScroll() {
-    this.showScrollButton = window.scrollY > 500;
+    // Get scroll position from the transform value of smooth-content
+    const content = document.getElementById('smooth-content');
+    if (content) {
+      const transform = window.getComputedStyle(content).transform;
+      const matrix = new DOMMatrix(transform);
+      this.showScrollButton = Math.abs(matrix.m42) > 500; // m42 is the Y transform value
+    }
   }
 
   scrollToTop() {
-    this.smoothScrollService.scrollToTop();
+    this.scrollSmootherService.scrollTo(0);
   }
 }
