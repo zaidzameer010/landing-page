@@ -1,6 +1,7 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ScrollSmootherService } from '../../services/scroll-smoother.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-scroll-to-top',
@@ -10,7 +11,7 @@ import { ScrollSmootherService } from '../../services/scroll-smoother.service';
     <button 
       *ngIf="showScrollButton"
       (click)="scrollToTop()"
-      class="fixed bottom-8 right-8 z-50 p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transition-all duration-300 ease-in-out transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      class="fixed bottom-8 right-8 z-[9999] p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transition-all duration-300 ease-in-out transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
       aria-label="Scroll to top">
       <svg 
         class="w-6 h-6" 
@@ -41,19 +42,24 @@ import { ScrollSmootherService } from '../../services/scroll-smoother.service';
     }
   `]
 })
-export class ScrollToTopComponent {
+export class ScrollToTopComponent implements OnInit, OnDestroy {
   showScrollButton = false;
+  private scrollThreshold = 500;
+  private scrollSubscription: Subscription | null = null;
 
   constructor(private scrollSmootherService: ScrollSmootherService) {}
 
-  @HostListener('window:scroll')
-  onWindowScroll() {
-    // Get scroll position from the transform value of smooth-content
-    const content = document.getElementById('smooth-content');
-    if (content) {
-      const transform = window.getComputedStyle(content).transform;
-      const matrix = new DOMMatrix(transform);
-      this.showScrollButton = Math.abs(matrix.m42) > 500; // m42 is the Y transform value
+  ngOnInit() {
+    this.scrollSubscription = this.scrollSmootherService.scrollPosition$.subscribe(
+      scrollPos => {
+        this.showScrollButton = scrollPos > this.scrollThreshold;
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    if (this.scrollSubscription) {
+      this.scrollSubscription.unsubscribe();
     }
   }
 

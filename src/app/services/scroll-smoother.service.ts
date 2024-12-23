@@ -1,6 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { BehaviorSubject } from 'rxjs';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,6 +16,10 @@ export class ScrollSmootherService {
   private scrollTop = 0;
   private targetScrollTop = 0;
   private ease = 0.1;
+  
+  // Add scroll position subject
+  private scrollPosition = new BehaviorSubject<number>(0);
+  scrollPosition$ = this.scrollPosition.asObservable();
 
   constructor(private ngZone: NgZone) {}
 
@@ -69,6 +74,9 @@ export class ScrollSmootherService {
       gsap.set(this.content, {
         y: -this.scrollTop
       });
+
+      // Update scroll position
+      this.scrollPosition.next(this.scrollTop);
 
       ScrollTrigger.update();
     }
@@ -133,5 +141,9 @@ export class ScrollSmootherService {
     window.removeEventListener('touchstart', this.onTouchStart.bind(this));
 
     ScrollTrigger.refresh();
+  }
+
+  getCurrentScrollPosition(): number {
+    return this.scrollTop;
   }
 } 
