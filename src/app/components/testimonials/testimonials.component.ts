@@ -1,13 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { HttpClient } from '@angular/common/http';
 
 interface Testimonial {
-  name: string;
   videoUrl: string;
   embedUrl?: SafeResourceUrl;
-  videoId?: string;
 }
 
 @Component({
@@ -70,125 +67,81 @@ interface Testimonial {
     </section>
   `
 })
-export class TestimonialsComponent implements OnInit, OnDestroy {
+export class TestimonialsComponent {
   currentIndex = 0;
   videosPerPage = 4;
 
   testimonials: Testimonial[] = [
     {
-      name: 'Ganesh Jadhav',
-      videoUrl: 'https://www.youtube.com/watch?v=YBN0F8xjW9g',
-      videoId: 'YBN0F8xjW9g'
+      videoUrl: 'https://www.youtube.com/watch?v=YBN0F8xjW9g'
     },
     {
-      name: 'Chetan Vekhande',
-      videoUrl: 'https://www.youtube.com/watch?v=zmjcNCT2JFc',
-      videoId: 'zmjcNCT2JFc'
+      videoUrl: 'https://www.youtube.com/watch?v=zmjcNCT2JFc'
     },
     {
-      name: 'Anuj Gogate',
-      videoUrl: 'https://www.youtube.com/watch?v=7UrEd63Kow8',
-      videoId: '7UrEd63Kow8'
+      videoUrl: 'https://www.youtube.com/watch?v=7UrEd63Kow8'
     },
     {
-      name: 'Abdullah Rangrez',
-      videoUrl: 'https://www.youtube.com/watch?v=_zHyYaA7alU',
-      videoId: '_zHyYaA7alU'
+      videoUrl: 'https://www.youtube.com/watch?v=_zHyYaA7alU'
     },
     {
-      name: 'Pavnesh Yadav',
-      videoUrl: 'https://www.youtube.com/watch?v=dzhaXhyX07c',
-      videoId: 'dzhaXhyX07c'
+      videoUrl: 'https://www.youtube.com/watch?v=dzhaXhyX07c'
     },
     {
-      name: 'Abdul Hafeez',
-      videoUrl: 'https://www.youtube.com/watch?v=Bxxlg3uCSWM',
-      videoId: 'Bxxlg3uCSWM'
+      videoUrl: 'https://www.youtube.com/watch?v=Bxxlg3uCSWM'
     },
     {
-      name: 'Sayyed Sarfaraz',
-      videoUrl: 'https://www.youtube.com/watch?v=UiM4Vvpvnsk',
-      videoId: 'UiM4Vvpvnsk'
+      videoUrl: 'https://www.youtube.com/watch?v=UiM4Vvpvnsk'
     },
     {
-      name: 'Jayesh Patil',
-      videoUrl: 'https://www.youtube.com/watch?v=TNnvL4qfp44',
-      videoId: 'TNnvL4qfp44'
+      videoUrl: 'https://www.youtube.com/watch?v=TNnvL4qfp44'
     },
     {
-      name: 'Mahendra Tadke',
-      videoUrl: 'https://www.youtube.com/watch?v=NdwM6mTlNu4',
-      videoId: 'NdwM6mTlNu4'
+      videoUrl: 'https://www.youtube.com/watch?v=NdwM6mTlNu4'
     },
     {
-      name: 'Shivam Dalvi',
-      videoUrl: 'https://www.youtube.com/watch?v=b3OggbKhT0s',
-      videoId: 'b3OggbKhT0s'
+      videoUrl: 'https://www.youtube.com/watch?v=b3OggbKhT0s'
     },
     {
-      name: 'Zakir Shaikh',
-      videoUrl: 'https://www.youtube.com/watch?v=TOKcl6eaAZs',
-      videoId: 'TOKcl6eaAZs'
+      videoUrl: 'https://www.youtube.com/watch?v=TOKcl6eaAZs'
     },
     {
-      name: 'Sultan Patel',
-      videoUrl: 'https://www.youtube.com/watch?v=-I_fKezCYXE',
-      videoId: '-I_fKezCYXE'
+      videoUrl: 'https://www.youtube.com/watch?v=-I_fKezCYXE'
     },
     {
-      name: 'Rishikesh Kamble',
-      videoUrl: 'https://www.youtube.com/watch?v=vfw8BTrzhpk',
-      videoId: 'vfw8BTrzhpk'
+      videoUrl: 'https://www.youtube.com/watch?v=vfw8BTrzhpk'
     },
     {
-      name: 'Wasim Akram',
-      videoUrl: 'https://www.youtube.com/watch?v=imJj8WsC2Yw',
-      videoId: 'imJj8WsC2Yw'
+      videoUrl: 'https://www.youtube.com/watch?v=imJj8WsC2Yw'
     },
     {
-      name: 'Shubham Gujar',
-      videoUrl: 'https://www.youtube.com/watch?v=JcYbfcuBd2o',
-      videoId: 'JcYbfcuBd2o'
+      videoUrl: 'https://www.youtube.com/watch?v=JcYbfcuBd2o'
     },
     {
-      name: 'Sharmilee Shinde',
-      videoUrl: 'https://www.youtube.com/watch?v=oMbq3e1Wj3Q',
-      videoId: 'oMbq3e1Wj3Q'
+      videoUrl: 'https://www.youtube.com/watch?v=oMbq3e1Wj3Q'
     },
     {
-      name: 'Jubeen Shaikh',
-      videoUrl: 'https://www.youtube.com/watch?v=vaHAJudgjWk',
-      videoId: 'vaHAJudgjWk'
+      videoUrl: 'https://www.youtube.com/watch?v=vaHAJudgjWk'
     },
     {
-      name: 'Anas Shaikh',
-      videoUrl: 'https://www.youtube.com/watch?v=L6VhzS89u5Q',
-      videoId: 'L6VhzS89u5Q'
+      videoUrl: 'https://www.youtube.com/watch?v=L6VhzS89u5Q'
     },
     {
-      name: 'Krutika Patil',
-      videoUrl: 'https://www.youtube.com/watch?v=Nfwe2kZpGCE',
-      videoId: 'Nfwe2kZpGCE'
+      videoUrl: 'https://www.youtube.com/watch?v=Nfwe2kZpGCE'
     },
     {
-      name: 'Parvez Shaikh',
-      videoUrl: 'https://www.youtube.com/watch?v=Ykb9cQbCJV0',
-      videoId: 'Ykb9cQbCJV0'
+      videoUrl: 'https://www.youtube.com/watch?v=Ykb9cQbCJV0'
     },
     {
-      name: 'Ranjan Kumar',
-      videoUrl: 'https://www.youtube.com/watch?v=cQ_qgdDNamQ',
-      videoId: 'cQ_qgdDNamQ'
+      videoUrl: 'https://www.youtube.com/watch?v=cQ_qgdDNamQ'
     },
     {
-      name: 'Vishal Patil',
-      videoUrl: 'https://www.youtube.com/watch?v=6cYylXR__yo',
-      videoId: '6cYylXR__yo'
+      videoUrl: 'https://www.youtube.com/watch?v=6cYylXR__yo'
     }
   ];
 
-  constructor(private sanitizer: DomSanitizer, private http: HttpClient) {
-    // Convert YouTube watch URLs to embed URLs and initialize video IDs
+  constructor(private sanitizer: DomSanitizer) {
+    // Convert YouTube watch URLs to embed URLs
     this.testimonials = this.testimonials.map(testimonial => ({
       ...testimonial,
       embedUrl: this.sanitizer.bypassSecurityTrustResourceUrl(
@@ -220,13 +173,5 @@ export class TestimonialsComponent implements OnInit, OnDestroy {
       const lastSetIndex = Math.floor((this.testimonials.length - 1) / this.videosPerPage) * this.videosPerPage;
       this.currentIndex = lastSetIndex;
     }
-  }
-
-  ngOnInit() {
-    // No initialization needed
-  }
-
-  ngOnDestroy() {
-    // Clean up if needed
   }
 } 
