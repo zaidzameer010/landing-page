@@ -1,9 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
 
 interface Testimonial {
   name: string;
   videoUrl: string;
+  embedUrl?: SafeResourceUrl;
+  videoId?: string;
 }
 
 @Component({
@@ -31,20 +35,14 @@ interface Testimonial {
                  class="w-full">
               <div class="bg-white rounded-lg border border-gray-100 overflow-hidden shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)]">
                 <div class="relative pt-[56.25%]">
-                  <video 
-                    [src]="testimonial.videoUrl" 
-                    class="absolute inset-0 w-full h-full object-cover"
-                    controls
-                    controlsList="nodownload"
-                    preload="metadata"
-                    (fullscreenchange)="handleFullscreenChange($event)"
-                    (webkitfullscreenchange)="handleFullscreenChange($event)"
-                    (mozfullscreenchange)="handleFullscreenChange($event)"
-                    (MSFullscreenChange)="handleFullscreenChange($event)">
-                  </video>
-                </div>
-                <div class="px-4 py-3 border-t border-gray-100">
-                  <h3 class="text-base font-medium text-gray-800">{{ testimonial.name }}</h3>
+                  <iframe 
+                    [src]="testimonial.embedUrl" 
+                    class="absolute inset-0 w-full h-full"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                  </iframe>
                 </div>
               </div>
             </div>
@@ -75,117 +73,128 @@ interface Testimonial {
 export class TestimonialsComponent implements OnInit, OnDestroy {
   currentIndex = 0;
   videosPerPage = 4;
-  private scrollPosition = 0;
 
   testimonials: Testimonial[] = [
     {
-      name: 'Anas',
-      videoUrl: 'assets/Testimonials/1_Anas-Testimonial-2023.mp4'
-    },
-    {
-      name: 'Krutika',
-      videoUrl: 'assets/Testimonials/2_Krutika-Testimonial-2023.mp4'
-    },
-    {
-      name: 'Parvez',
-      videoUrl: 'assets/Testimonials/3_Parvez-Testimonial-2023.mp4'
-    },
-    {
-      name: 'Ranjan',
-      videoUrl: 'assets/Testimonials/4_Ranjan-Testimonial-2023.mp4'
-    },
-    {
-      name: 'Vishal',
-      videoUrl: 'assets/Testimonials/5_Vishal-Testimonial-2023.mp4'
-    },
-    {
-      name: 'Anuj Gogate',
-      videoUrl: 'assets/Testimonials/Anuj-Gogate-Testimonial-6.mp4'
-    },
-    {
-      name: 'Pavnesh Yadav',
-      videoUrl: 'assets/Testimonials/Pavnesh-Yadav-Testimonial-7.mp4'
-    },
-    {
-      name: 'Abdul Hafeez',
-      videoUrl: 'assets/Testimonials/Abdul-Hafeez-Testimonial-8.mp4'
-    },
-    {
-      name: 'Sayyed Sarfaraz',
-      videoUrl: 'assets/Testimonials/Sayyed-Sarfaraz-Testimonial-9.mp4'
-    },
-    {
       name: 'Ganesh Jadhav',
-      videoUrl: 'assets/Testimonials/Ganesh-Jadhav-Testimonial-10.mp4'
-    },
-    {
-      name: 'Jayesh Patil',
-      videoUrl: 'assets/Testimonials/Jayesh-Patil-Testimonial-11.mp4'
-    },
-    {
-      name: 'Mahendra Tadke',
-      videoUrl: 'assets/Testimonials/Mahendra-Tadke-Testimonial-12.mp4'
-    },
-    {
-      name: 'Shivam Dalvi',
-      videoUrl: 'assets/Testimonials/Shivam-Dalvi-Testimonial-13.mp4'
-    },
-    {
-      name: 'Abdullah Rangrez',
-      videoUrl: 'assets/Testimonials/Abdullah-Rangrez-Testimonial-14.mp4'
-    },
-    {
-      name: 'Zakir',
-      videoUrl: 'assets/Testimonials/Zakir-Testimonial-15.mp4'
-    },
-    {
-      name: 'Sultan Patel',
-      videoUrl: 'assets/Testimonials/Sultan-Patel-Testimonial-17.mp4'
-    },
-    {
-      name: 'Rishikesh Kamble',
-      videoUrl: 'assets/Testimonials/Rishikesh-Kamble-Testimonial-18.mp4'
+      videoUrl: 'https://www.youtube.com/watch?v=YBN0F8xjW9g',
+      videoId: 'YBN0F8xjW9g'
     },
     {
       name: 'Chetan Vekhande',
-      videoUrl: 'assets/Testimonials/Chetan-Vekhande-Testimonial-19.mp4'
+      videoUrl: 'https://www.youtube.com/watch?v=zmjcNCT2JFc',
+      videoId: 'zmjcNCT2JFc'
+    },
+    {
+      name: 'Anuj Gogate',
+      videoUrl: 'https://www.youtube.com/watch?v=7UrEd63Kow8',
+      videoId: '7UrEd63Kow8'
+    },
+    {
+      name: 'Abdullah Rangrez',
+      videoUrl: 'https://www.youtube.com/watch?v=_zHyYaA7alU',
+      videoId: '_zHyYaA7alU'
+    },
+    {
+      name: 'Pavnesh Yadav',
+      videoUrl: 'https://www.youtube.com/watch?v=dzhaXhyX07c',
+      videoId: 'dzhaXhyX07c'
+    },
+    {
+      name: 'Abdul Hafeez',
+      videoUrl: 'https://www.youtube.com/watch?v=Bxxlg3uCSWM',
+      videoId: 'Bxxlg3uCSWM'
+    },
+    {
+      name: 'Sayyed Sarfaraz',
+      videoUrl: 'https://www.youtube.com/watch?v=UiM4Vvpvnsk',
+      videoId: 'UiM4Vvpvnsk'
+    },
+    {
+      name: 'Jayesh Patil',
+      videoUrl: 'https://www.youtube.com/watch?v=TNnvL4qfp44',
+      videoId: 'TNnvL4qfp44'
+    },
+    {
+      name: 'Mahendra Tadke',
+      videoUrl: 'https://www.youtube.com/watch?v=NdwM6mTlNu4',
+      videoId: 'NdwM6mTlNu4'
+    },
+    {
+      name: 'Shivam Dalvi',
+      videoUrl: 'https://www.youtube.com/watch?v=b3OggbKhT0s',
+      videoId: 'b3OggbKhT0s'
+    },
+    {
+      name: 'Zakir Shaikh',
+      videoUrl: 'https://www.youtube.com/watch?v=TOKcl6eaAZs',
+      videoId: 'TOKcl6eaAZs'
+    },
+    {
+      name: 'Sultan Patel',
+      videoUrl: 'https://www.youtube.com/watch?v=-I_fKezCYXE',
+      videoId: '-I_fKezCYXE'
+    },
+    {
+      name: 'Rishikesh Kamble',
+      videoUrl: 'https://www.youtube.com/watch?v=vfw8BTrzhpk',
+      videoId: 'vfw8BTrzhpk'
     },
     {
       name: 'Wasim Akram',
-      videoUrl: 'assets/Testimonials/Wasim-Akram-Testimonial-1-.mp4'
+      videoUrl: 'https://www.youtube.com/watch?v=imJj8WsC2Yw',
+      videoId: 'imJj8WsC2Yw'
     },
     {
       name: 'Shubham Gujar',
-      videoUrl: 'assets/Testimonials/Shubham-Gujar-Testimonial-2.mp4'
+      videoUrl: 'https://www.youtube.com/watch?v=JcYbfcuBd2o',
+      videoId: 'JcYbfcuBd2o'
     },
     {
       name: 'Sharmilee Shinde',
-      videoUrl: 'assets/Testimonials/Sharmilee-Shinde-Testimonial-3.mp4'
+      videoUrl: 'https://www.youtube.com/watch?v=oMbq3e1Wj3Q',
+      videoId: 'oMbq3e1Wj3Q'
     },
     {
       name: 'Jubeen Shaikh',
-      videoUrl: 'assets/Testimonials/Jubeen-Shaikh-Testimonial-4.mp4'
+      videoUrl: 'https://www.youtube.com/watch?v=vaHAJudgjWk',
+      videoId: 'vaHAJudgjWk'
+    },
+    {
+      name: 'Anas Shaikh',
+      videoUrl: 'https://www.youtube.com/watch?v=L6VhzS89u5Q',
+      videoId: 'L6VhzS89u5Q'
+    },
+    {
+      name: 'Krutika Patil',
+      videoUrl: 'https://www.youtube.com/watch?v=Nfwe2kZpGCE',
+      videoId: 'Nfwe2kZpGCE'
+    },
+    {
+      name: 'Parvez Shaikh',
+      videoUrl: 'https://www.youtube.com/watch?v=Ykb9cQbCJV0',
+      videoId: 'Ykb9cQbCJV0'
+    },
+    {
+      name: 'Ranjan Kumar',
+      videoUrl: 'https://www.youtube.com/watch?v=cQ_qgdDNamQ',
+      videoId: 'cQ_qgdDNamQ'
+    },
+    {
+      name: 'Vishal Patil',
+      videoUrl: 'https://www.youtube.com/watch?v=6cYylXR__yo',
+      videoId: '6cYylXR__yo'
     }
   ];
 
-  handleFullscreenChange(event: Event) {
-    const isFullscreen = document.fullscreenElement || 
-                        (document as any).webkitFullscreenElement || 
-                        (document as any).mozFullScreenElement || 
-                        (document as any).msFullscreenElement;
-    
-    if (!isFullscreen) {
-      // When exiting fullscreen, restore the scroll position after a short delay
-      setTimeout(() => {
-        window.scrollTo({
-          top: this.scrollPosition,
-          behavior: 'instant'
-        });
-      }, 100);
-    } else {
-      // Store the current scroll position when entering fullscreen
-      this.scrollPosition = window.scrollY;
-    }
+  constructor(private sanitizer: DomSanitizer, private http: HttpClient) {
+    // Convert YouTube watch URLs to embed URLs and initialize video IDs
+    this.testimonials = this.testimonials.map(testimonial => ({
+      ...testimonial,
+      embedUrl: this.sanitizer.bypassSecurityTrustResourceUrl(
+        testimonial.videoUrl.replace('watch?v=', 'embed/')
+      )
+    }));
   }
 
   get visibleTestimonials(): Testimonial[] {
