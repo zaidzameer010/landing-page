@@ -110,3 +110,54 @@ video {
   filter: blur(2px);
   transform: scale(1.02); /* Slight scale to prevent blur edges */
 }
+
+/* Interactive Hover Button Styles */
+.group {
+  isolation: isolate;
+}
+
+.group:hover .h-2.w-2 {
+  transform: translate(-50%, -50%) scale(100);
+}
+
+.group:hover {
+  border-color: rgb(37, 99, 235);
+  color: white;
+}
+
+.group .h-2.w-2 {
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group .translate-x-12 {
+  transform: translateX(3rem);
+}
+
+.group:hover .group-hover\:translate-x-12 {
+  transform: translateX(3rem);
+}
+
+.group:hover .group-hover\:-translate-x-0 {
+  transform: translateX(0);
+}
+
+.group:hover .group-hover\:opacity-0 {
+  opacity: 0;
+}
+
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
+}
+
+.group:hover .group-hover\:scale-\[100\] {
+  transform: translate(-50%, -50%) scale(100);
+}
+
+/* Ensure smooth transitions */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
