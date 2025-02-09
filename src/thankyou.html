@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You!</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9ff;
+        }
+        .thank-you-container {
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+            max-width: 800px;
+            width: 90%;
+        }
+        .check-icon {
+            width: 80px;
+            height: 80px;
+            background: #e8f5e9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+        }
+        .check-icon svg {
+            width: 40px;
+            height: 40px;
+            color: #4caf50;
+        }
+        h1 {
+            color: #1a1f36;
+            font-size: 48px;
+            margin: 0 0 1.5rem;
+            font-weight: 700;
+        }
+        .main-message {
+            color: #4a5568;
+            font-size: 24px;
+            margin-bottom: 2.5rem;
+        }
+        .info-box {
+            background: #f8f9ff;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .info-text {
+            color: #4a5568;
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .spam-note {
+            color: #64748b;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s) {
+            if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        
+        fbq('init', '576710368680818');
+        fbq('track', 'PageView');
+
+        // Custom Purchase Event with the provided data
+        fbq('track', 'Purchase', {
+            user_data: {
+                state: ["1b0316ed1cfed044035c55363e02ccafab26d66b1c2746b94d17285f043324aa"],
+                country: ["fb54e9062429a93785559529beda15c55f62c29be22267811c0e8346c14846d3"],
+                external_id: ["e98ed8057af14fe0a3b3899dd1bb049470a22373e84adc596dea6edb03a270dc"]
+            },
+            currency: "INR",
+            value: 35000.00,
+            action_source: "website",
+            event_time: 1738750884
+        });
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=576710368680818&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+
+    <div class="thank-you-container">
+        <div class="check-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17L4 12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <h1>Thank You!</h1>
+        <p class="main-message">Your purchase has been successfully completed.</p>
+        <div class="info-box">
+            <p class="info-text">You will receive an Email and a WhatsApp message shortly with detailed instructions.</p>
+            <p class="info-text spam-note">Please also check your spam or junk email folder if needed.</p>
+        </div>
+    </div>
+</body>
+</html> 

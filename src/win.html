@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Page</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .iframe-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s) {
+            if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        
+        fbq('init', '576710368680818');
+        fbq('track', 'PageView');
+
+        // Custom InitiateCheckout Event
+        const currentTimestamp = Math.floor(new Date().getTime() / 1000);
+        fbq('track', 'InitiateCheckout', {
+            external_id: 'A01',
+            event_time: currentTimestamp,
+            action_source: 'website'
+        });
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=576710368680818&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+
+    <div class="iframe-container">
+        <iframe 
+            src="https://zohosecurepay.in/checkout/una5guwh-93am98fk7a9vc/Self-Paced-Program-One-Time--INR-35000"
+            frameborder="0"
+            allowfullscreen
+            allow="payment"
+            loading="eager">
+        </iframe>
+    </div>
+</body>
+</html> 
