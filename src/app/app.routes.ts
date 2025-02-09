@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { Component } from '@angular/core';
+import { FaqComponent } from './components/faq/faq.component';
 
 @Component({
   template: `
@@ -32,6 +33,10 @@ export const routes: Routes = [
   {
     path: 'win',
     component: IframeComponent
+  },
+  {
+    path: 'faq',
+    component: FaqComponent
   },
   {
     path: 'thankyou',
