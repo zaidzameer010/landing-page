@@ -1,6 +1,4 @@
 import { Routes } from '@angular/router';
-<<<<<<< HEAD
-=======
 import { Component } from '@angular/core';
 import { FaqComponent } from './components/faq/faq.component';
 
@@ -25,7 +23,6 @@ import { FaqComponent } from './components/faq/faq.component';
   `]
 })
 export class IframeComponent {}
->>>>>>> 92b97ac1635f9ef84d8eb42a0314eb4389366c90
 
 export const routes: Routes = [
   {
@@ -34,8 +31,6 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
-<<<<<<< HEAD
-=======
     path: 'win',
     component: IframeComponent
   },
@@ -44,11 +39,6 @@ export const routes: Routes = [
     component: FaqComponent
   },
   {
-    path: 'thankyou',
-    loadChildren: () => import('./pages/thankyou/thankyou.routes').then(m => m.THANKYOU_ROUTES)
-  },
-  {
->>>>>>> 92b97ac1635f9ef84d8eb42a0314eb4389366c90
     path: 'home',
     loadChildren: () => import('./pages/home/home.routes').then(m => m.HOME_ROUTES)
   },
