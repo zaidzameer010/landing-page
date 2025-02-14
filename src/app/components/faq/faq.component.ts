@@ -31,15 +31,15 @@ export class FaqComponent {
     const titles = [
       // Program Overview [0-6]
       'Can you teach me from the basics, even if I\'m from a non-IT background?',
-      'How long does the course take to complete?',
-      'What\'s the name of the course?',
+      'How long does the program take to complete?',
+      'What\'s the name of the program?',
       'Does the curriculum include cutting-edge Technologies?',
       'How is this possible without coding?',
       'I\'m from a non-IT field. Can I really do this program?',
       'Does the IT industry value fresh talent?',
 
       // Learning Experience [7-12]
-      'Can I complete this course while working a full-time job?',
+      'Can I complete this program while working a full-time job?',
       'Are online and offline sessions delivered by the same expert trainers?',
       'Will I have access to recorded sessions?',
       'Will I get help during the project completion stage?',
@@ -47,21 +47,21 @@ export class FaqComponent {
       'How should I prepare for the program?',
 
       // Career Outcomes [13-19]
-      'Does this course guarantee me a job?',
+      'Does this program guarantee me a job?',
       'How many interview calls will I get for placements?',
       'What industries can I work in after this program?',
       'Can I apply for international job opportunities?',
       'What kind of career growth can I expect?',
       'I\'m a fresh graduate—how do I justify my experience?',
-      'What job roles will this course prepare me for?',
+      'What job roles will this program prepare me for?',
 
       // Program Features [20-25]
-      'Do I need prior programming experience to excel in this course?',
+      'Do I need prior programming experience to excel in this program?',
       'What are the most in-demand tech skills today?',
       'Are trial or demo sessions available?',
       'Can I interact with alumni who successfully completed this programme?',
       'Can I enrol for only the AI specialisation or shorter modules?',
-      'How will this course help me transition into an IT career?',
+      'How will this program help me transition into an IT career?',
 
       // Admissions & Fees [26-30]
       'What is the fee structure and certification costs?',
