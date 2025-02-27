@@ -15,7 +15,25 @@
 
   <div class="container-custom relative z-10">
     <!-- Header Section -->
-    <div class="text-center mb-16">
+    <div class="text-center mb-16 relative">
+      <!-- CTA Button -->
+      <div class="absolute top-0 right-0 pt-4 sm:pt-6 md:pt-8 pr-4 sm:pr-6 md:pr-8">
+        <button 
+           class="group relative w-auto cursor-pointer overflow-hidden rounded-full border bg-white p-2 px-6 text-center font-semibold inline-flex">
+          <div class="flex items-center gap-2">
+            <div class="h-2 w-2 rounded-full bg-blue-600 transition-transform duration-300 group-hover:scale-[100] absolute left-2 top-1/2 -translate-y-1/2 will-change-transform"></div>
+            <span class="relative z-10 inline-block transition-transform duration-300 group-hover:translate-x-12 group-hover:opacity-0">
+              Watch Webinar Replay
+            </span>
+          </div>
+          <div class="absolute left-0 top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-white opacity-0 transition-all duration-300 group-hover:-translate-x-0 group-hover:opacity-100">
+            <span>Watch Webinar Replay</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </div>
+        </button>
+      </div>
       <h1 class="section-title text-4xl sm:text-5xl md:text-7xl font-extrabold mb-6">
         The Ultimate FAQ
       </h1>
@@ -44,48 +62,48 @@
         <div [class.expanded]="isExpanded(0, i)" class="faq-content px-8">
           <ng-container [ngSwitch]="faqIndex">
             <div *ngSwitchCase="0" class="pb-6">
-              <p><strong>🔵 Answer:</strong> Absolutely! Our Technique Based Content ensures that even those with no prior IT experience can transition smoothly into tech careers. You will start with fundamental concepts before advancing to hands-on projects.</p>
+              <p><strong>Answer:</strong> Absolutely! Our Technique Based Content ensures that even those with no prior IT experience can transition smoothly into tech careers. You will start with fundamental concepts before advancing to hands-on projects.</p>
               <p class="mt-4"><strong>💡 Success Story:</strong> Ahmed, a mechanical engineer, became a Cloud Engineer in just 4 months, despite having no prior IT experience! 🚀</p>
             </div>
 
             <div *ngSwitchCase="1" class="pb-6">
-              <p><strong>🔵 Answer:</strong> The program is designed to be completed within 3 to 6 months, depending on your investment of Time To Practice, 3 hours everyday for next 3 months can put you 5 years ahead in life.</p>
+              <p><strong>Answer:</strong> The program is designed to be completed within 3 to 6 months, depending on your investment of Time To Practice, 3 hours everyday for next 3 months can put you 5 years ahead in life.</p>
               <p class="mt-4"><strong>📌 Bonus:</strong> You will receive a personalised career roadmap to accelerate your progress!</p>
             </div>
 
             <div *ngSwitchCase="2" class="pb-6">
-              <p><strong>🔵 Answer:</strong> 🔥 "Bombastic Program: DataCenter Technologies in Demand"</p>
+              <p><strong>Answer:</strong> 🔥 "Bombastic Program: DataCenter Technologies in Demand"</p>
               <p class="mt-4">This isn't just another IT program—it's your golden ticket to mastering the most sought-after DataCenter technologies.</p>
             </div>
 
             <div *ngSwitchCase="3" class="pb-6">
-              <p><strong>🔵 Answer:</strong> Absolutely! The program includes:</p>
+              <p><strong>Answer:</strong> Absolutely! The program includes:</p>
               <p class="mt-4">🔹 IT/Ops - Dev/Ops - Sys/Ops - Sec/Ops - Data/Ops - ML/Ops - Ai/Ops</p>
               <p class="mt-4"><strong>📌 Bonus:</strong> You will Learn Essentials Of IT that includes A+ Network+ Cloud+ Security+ Linux+, making you highly competitive in the job market! 🎓</p>
             </div>
 
             <div *ngSwitchCase="4" class="pb-6">
-              <p><strong>🔵 Answer:</strong> This program is tailored for Architects, Administrators, Specialists, Engineers, and Senior Associates—not Developers.</p>
+              <p><strong>Answer:</strong> This program is tailored for Architects, Administrators, Specialists, Engineers, and Senior Associates—not Developers.</p>
               <p class="mt-4">🚀 Why? Because the IT industry is evolving. No-Code and Low-Code platforms are taking over traditional development. The future belongs to strategists, architects, and problem-solvers—not just coders.</p>
               <div class="mt-4 space-y-2">
-                <p>🔵 Design, Manage & Optimize Complex IT Systems – No coding required.</p>
-                <p>🔵 Master IT Infrastructure, Automation & Security – Skills that drive businesses forward.</p>
-                <p>🔵 Lead & Architect Solutions – Future-proof your career by focusing on high-impact roles.</p>
+                <p>Design, Manage & Optimize Complex IT Systems – No coding required.</p>
+                <p>Master IT Infrastructure, Automation & Security – Skills that drive businesses forward.</p>
+                <p>Lead & Architect Solutions – Future-proof your career by focusing on high-impact roles.</p>
               </div>
             </div>
 
             <div *ngSwitchCase="5" class="pb-6">
-              <p><strong>🔵 Answer:</strong> Not only can you do it, but you might even have an edge!</p>
+              <p><strong>Answer:</strong> Not only can you do it, but you might even have an edge!</p>
               <div class="mt-4 space-y-2">
-                <p>🚀 No Unlearning Required – Unlike IT professionals stuck in outdated habits, you'll dive straight into the latest technologies.</p>
-                <p>🔥 Zero to Hero in 90 Days – Designed for beginners, this program ensures you gain real-world expertise from scratch.</p>
-                <p>💡 Future-Focused Learning – While others struggle to keep up, you'll be ahead of the curve with a fresh, innovation-driven mindset.</p>
+                <p>No Unlearning Required – Unlike IT professionals stuck in outdated habits, you'll dive straight into the latest technologies.</p>
+                <p>Zero to Hero in 90 Days – Designed for beginners, this program ensures you gain real-world expertise from scratch.</p>
+                <p>Future-Focused Learning – While others struggle to keep up, you'll be ahead of the curve with a fresh, innovation-driven mindset.</p>
               </div>
               <p class="mt-4">Your background isn't a limitation—it's an advantage.</p>
             </div>
 
             <div *ngSwitchCase="6" class="pb-6">
-              <p><strong>🔵 Answer:</strong> The IT industry is designed to distribute tasks into specialized segments, creating abundant opportunities for fresh talent. Companies often prioritize individuals who are adaptable, eager to learn, and aligned with modern technologies rather than those with extensive experience in outdated systems & Technologies.</p>
+              <p><strong>Answer:</strong> The IT industry is designed to distribute tasks into specialized segments, creating abundant opportunities for fresh talent. Companies often prioritize individuals who are adaptable, eager to learn, and aligned with modern technologies rather than those with extensive experience in outdated systems & Technologies.</p>
               <p class="mt-4">Newcomers bring fresh perspectives, embrace innovation, and contribute to the industry's rapid evolution. Their flexibility and willingness to grow make them valuable assets for organizations looking to build dynamic, future-ready teams.</p>
             </div>
           </ng-container>
@@ -110,46 +128,46 @@
         <div [class.expanded]="isExpanded(1, i)" class="faq-content px-8">
           <ng-container [ngSwitch]="faqIndex">
             <div *ngSwitchCase="7" class="pb-6">
-              <p><strong>🔵 Answer:</strong> Yes! Our programme is designed for working professionals, offering flexible schedules, recorded sessions, and weekend FAQs.</p>
+              <p><strong>Answer:</strong> Yes! Our programme is designed for working professionals, offering flexible schedules, recorded sessions, and weekend FAQs.</p>
               <p class="mt-4">💬 Need quick answers? Our AI-powered chatbot is available 24/7 for instant support!</p>
             </div>
 
             <div *ngSwitchCase="8" class="pb-6">
-              <p><strong>🔵 Answer:</strong> Yes! Whether you choose online or offline learning, you will be taught by the same highly experienced instructors.</p>
+              <p><strong>Answer:</strong> Yes! Whether you choose online or offline learning, you will be taught by the same highly experienced instructors.</p>
               <p class="mt-4"><strong>📌 Bonus:</strong> You will get LMS access to recorded sessions for continuous learning! 🎥</p>
             </div>
 
             <div *ngSwitchCase="9" class="pb-6">
-              <p><strong>🔵 Answer:</strong> Yes! Every session is recorded and available on our LMS, so you can review them at your convenience.</p>
+              <p><strong>Answer:</strong> Yes! Every session is recorded and available on our LMS, so you can review them at your convenience.</p>
               <p class="mt-4"><strong>💡 Bonus:</strong> You also get access to weekly live Q&A sessions with mentors for additional support!</p>
             </div>
 
             <div *ngSwitchCase="10" class="pb-6">
-              <p><strong>🔵 Answer:</strong> Absolutely! And here's what sets us apart:</p>
+              <p><strong>Answer:</strong> Absolutely! And here's what sets us apart:</p>
               <div class="mt-4 space-y-2">
-                <p>🔵 Elite-Level Mentorship – A PMP-Certified Project Management Expert will personally guide you.</p>
-                <p>🔥 Hands-On Assistance – Get step-by-step support to ensure your project isn't just completed—it's exceptional.</p>
-                <p>🏆 Industry-Proven Best Practices – Learn from those who have successfully executed high-impact IT projects.</p>
+                <p>Elite-Level Mentorship – A PMP-Certified Project Management Expert will personally guide you.</p>
+                <p>Hands-On Assistance – Get step-by-step support to ensure your project isn't just completed—it's exceptional.</p>
+                <p>Industry-Proven Best Practices – Learn from those who have successfully executed high-impact IT projects.</p>
               </div>
               <p class="mt-4">You're not just finishing a project—you're building a portfolio that screams professional excellence.</p>
             </div>
 
             <div *ngSwitchCase="11" class="pb-6">
-              <p><strong>🔵 Answer:</strong> We've structured the process to keep you motivated and ensure success:</p>
+              <p><strong>Answer:</strong> We've structured the process to keep you motivated and ensure success:</p>
               <div class="mt-4 space-y-2">
-                <p>⿡ Milestone Quizzes – Proof of Learning (POL) after each module.</p>
-                <p>⿢ Unlock the Next Level – Pass the quiz, and advance to the next stage!</p>
-                <p>⿣ Keep the Momentum Going – Step by step, you'll master each challenge.</p>
+                <p>Milestone Quizzes – Proof of Learning (POL) after each module.</p>
+                <p>Unlock the Next Level – Pass the quiz, and advance to the next stage!</p>
+                <p>Keep the Momentum Going – Step by step, you'll master each challenge.</p>
               </div>
               <p class="mt-4">This isn't just education—it's an adventure.</p>
             </div>
 
             <div *ngSwitchCase="12" class="pb-6">
-              <p><strong>🔵 Answer:</strong> You only need three things:</p>
+              <p><strong>Answer:</strong> You only need three things:</p>
               <div class="mt-4 space-y-2">
-                <p>🔵 Time – 3 hours per day for 90 days.</p>
-                <p>�� Mindset – Be ready to learn, grow, and apply skills in real-world scenarios.</p>
-                <p>🔵 Commitment – Give it your all, and we'll take care of the rest.</p>
+                <p>Time – 3 hours per day for 90 days.</p>
+                <p>Mindset – Be ready to learn, grow, and apply skills in real-world scenarios.</p>
+                <p>Commitment – Give it your all, and we'll take care of the rest.</p>
               </div>
               <p class="mt-4">Bring these, and your future self will thank you!</p>
             </div>
@@ -175,73 +193,73 @@
         <div [class.expanded]="isExpanded(2, i)" class="faq-content px-8">
           <ng-container [ngSwitch]="faqIndex">
             <div *ngSwitchCase="13" class="pb-6">
-              <p><strong>🔵 Answer:</strong> We're always surprised when graduates ask for a job guarantee—when the real question is: Do you guarantee 3 hours of dedicated practice every day?</p>
+              <p><strong>Answer:</strong> We're always surprised when graduates ask for a job guarantee—when the real question is: Do you guarantee 3 hours of dedicated practice every day?</p>
               <div class="mt-4 space-y-2">
-                <p>🔵 Success isn't given; it's earned. It's not about us—it's about YOU, your discipline, and your drive.</p>
-                <p>💡 We will never give up on you—We provide 100% placement assistance</p>
-                <p>📌 Fact: 70% of our graduates secure jobs within 9 months, with an average 120% salary increase!</p>
+                <p>Success isn't given; it's earned. It's not about us—it's about YOU, your discipline, and your drive.</p>
+                <p>We will never give up on you—We provide 100% placement assistance</p>
+                <p>Fact: 70% of our graduates secure jobs within 9 months, with an average 120% salary increase!</p>
               </div>
             </div>
 
             <div *ngSwitchCase="14" class="pb-6">
-              <p><strong>🔵 Answer:</strong> This is a no-brainer! Once you complete the program, you tell us!</p>
+              <p><strong>Answer:</strong> This is a no-brainer! Once you complete the program, you tell us!</p>
               <p class="mt-4">Here's why:</p>
               <div class="mt-4 space-y-2">
-                <p>🔵 Industry-Aligned Curriculum – Master DataCenter technologies</p>
-                <p>🔵 Hands-On, Real-World Projects – Work on projects that align with industry needs</p>
-                <p>🔵 Expert Feedback – Have your projects reviewed by Professional Solutions Architects</p>
-                <p>🔵 Résumé & Career Strategy – Learn to craft an IT résumé that gets noticed</p>
-                <p>🔵 Interview Mastery – Prepare with the latest scenario-based interview questions</p>
-                <p>🔵 Comprehensive Placement Assistance – End-to-end support</p>
-                <p>🔵 Post-Job Support – We're invested in your long-term success</p>
+                <p>Industry-Aligned Curriculum – Master DataCenter technologies</p>
+                <p>Hands-On, Real-World Projects – Work on projects that align with industry needs</p>
+                <p>Expert Feedback – Have your projects reviewed by Professional Solutions Architects</p>
+                <p>Résumé & Career Strategy – Learn to craft an IT résumé that gets noticed</p>
+                <p>Interview Mastery – Prepare with the latest scenario-based interview questions</p>
+                <p>Comprehensive Placement Assistance – End-to-end support</p>
+                <p>Post-Job Support – We're invested in your long-term success</p>
               </div>
             </div>
 
             <div *ngSwitchCase="15" class="pb-6">
-              <p><strong>🔵 Answer:</strong> Any industry that uses data—which is nearly all of them!</p>
+              <p><strong>Answer:</strong> Any industry that uses data—which is nearly all of them!</p>
               <div class="mt-4 space-y-2">
-                <p>💡 Finance & Banking – Risk assessment, fraud detection, infrastructure security</p>
-                <p>💡 Healthcare – IT operations, data analytics, automation</p>
-                <p>💡 E-Commerce – Cloud architecture, DevOps, SecOps</p>
-                <p>💡 Telecommunications – Infrastructure management, AI/ML integration</p>
-                <p>💡 Government & Defense – Security, compliance, cloud migration</p>
+                <p>Finance & Banking – Risk assessment, fraud detection, infrastructure security</p>
+                <p>Healthcare – IT operations, data analytics, automation</p>
+                <p>E-Commerce – Cloud architecture, DevOps, SecOps</p>
+                <p>Telecommunications – Infrastructure management, AI/ML integration</p>
+                <p>Government & Defense – Security, compliance, cloud migration</p>
               </div>
             </div>
 
             <div *ngSwitchCase="16" class="pb-6">
-              <p><strong>🔵 Answer:</strong> Yes! The skills you gain are globally recognised, opening up career opportunities in the UK, UAE, KSA, Ireland, Germany, USA, Singapore and beyond. 🌎</p>
+              <p><strong>Answer:</strong> Yes! The skills you gain are globally recognised, opening up career opportunities in the UK, UAE, KSA, Ireland, Germany, USA, Singapore and beyond. 🌎</p>
               <p class="mt-4"><strong>📌 Pro Tip:</strong> You Will Be able to Join our alumni networking events to connect with recruiters from top companies!</p>
             </div>
 
             <div *ngSwitchCase="17" class="pb-6">
-              <p><strong>🔵 Answer:</strong> You Become Irreplaceable However,</p>
+              <p><strong>Answer:</strong> You Become Irreplaceable However,</p>
               <div class="mt-4 space-y-2">
-                <p>🔵 Entry-Level: Cloud/AI Associate (£40,000–£60,000 per year)</p>
-                <p>🔵 Mid-Level: Senior Engineer/Administrator (£70,000–£100,000 per year)</p>
-                <p>🔵 Senior-Level: Tech Lead/Manager/Architect (£100,000+ per year)</p>
+                <p>Entry-Level: Cloud/AI Associate (£40,000–£60,000 per year)</p>
+                <p>Mid-Level: Senior Engineer/Administrator (£70,000–£100,000 per year)</p>
+                <p>Senior-Level: Tech Lead/Manager/Architect (£100,000+ per year)</p>
               </div>
               <p class="mt-4"><strong>📌 Note:</strong> 70% of our students double their salaries within a year! 🚀</p>
             </div>
 
             <div *ngSwitchCase="18" class="pb-6">
-              <p><strong>🔵 Answer:</strong> Your university projects (IEEE papers, capstone projects) are your experience!</p>
+              <p><strong>Answer:</strong> Your university projects (IEEE papers, capstone projects) are your experience!</p>
               <div class="mt-4 space-y-2">
-                <p>🔵 A résumé is about "resuming" from academia to real-world work.</p>
-                <p>🔵 This program helps you bridge the gap between theory and industry application.</p>
-                <p>🔵 You'll graduate with projects, skills, and confidence that hiring managers value.</p>
+                <p>A résumé is about "resuming" from academia to real-world work.</p>
+                <p>This program helps you bridge the gap between theory and industry application.</p>
+                <p>You'll graduate with projects, skills, and confidence that hiring managers value.</p>
               </div>
               <p class="mt-4">You're not starting from zero—you're leveling up.</p>
             </div>
 
             <div *ngSwitchCase="19" class="pb-6">
-              <p><strong>🔵 Answer:</strong> You will be ready to apply for in-demand roles such as:</p>
+              <p><strong>Answer:</strong> You will be ready to apply for in-demand roles such as:</p>
               <div class="mt-4 space-y-2">
-                <p>🔵 AI/ML Engineer</p>
-                <p>🔵 IT Administrator</p>
-                <p>🔵 DevOps Specialist</p>
-                <p>🔵 Big Data Engineer</p>
-                <p>🔵 Cloud Solutions Architect</p>
-                <p>🔵 Tech Leader</p>
+                <p>AI/ML Engineer</p>
+                <p>IT Administrator</p>
+                <p>DevOps Specialist</p>
+                <p>Big Data Engineer</p>
+                <p>Cloud Solutions Architect</p>
+                <p>Tech Leader</p>
               </div>
               <p class="mt-4"><strong>📌 Exclusive:</strong> Career Roadmap PDFs to explore salary trends and career progression opportunities are available in the LMS!</p>
             </div>
@@ -267,54 +285,54 @@
         <div [class.expanded]="isExpanded(3, i)" class="faq-content px-8">
           <ng-container [ngSwitch]="faqIndex">
             <div *ngSwitchCase="20" class="pb-6">
-              <p><strong>🔵 Answer:</strong> No! Because This is a data or systems or datacenter Administrator, Engineer, Tech Lead, Solutions Architect Focused Training.</p>
+              <p><strong>Answer:</strong> No! Because This is a data or systems or datacenter Administrator, Engineer, Tech Lead, Solutions Architect Focused Training.</p>
               <p class="mt-4"><strong>📌 Tip:</strong> Take onboarding quiz to unlock a personalised learning pathway based on your current skill level!</p>
             </div>
 
             <div *ngSwitchCase="21" class="pb-6">
-              <p><strong>🔵 Answer:</strong> The most sought-after skills in the industry are:</p>
+              <p><strong>Answer:</strong> The most sought-after skills in the industry are:</p>
               <div class="mt-4 space-y-2">
-                <p>🔹 Artificial Intelligence for the enterprise (AI/ML)</p>
-                <p>🔹 Multi-Cloud Data Center Migrations Oracle, AWS, Azure, GCP</p>
-                <p>🔹 Docker & Kubernetes</p>
-                <p>🔹 BigData & Augmented Analytics</p>
+                <p>Artificial Intelligence for the enterprise (AI/ML)</p>
+                <p>Multi-Cloud Data Center Migrations Oracle, AWS, Azure, GCP</p>
+                <p>Docker & Kubernetes</p>
+                <p>BigData & Augmented Analytics</p>
               </div>
               <p class="mt-4"><strong>📌 Join our industry insights webinars!</strong></p>
             </div>
 
             <div *ngSwitchCase="22" class="pb-6">
-              <p><strong>🔵 Answer:</strong> Yes! We offer:</p>
+              <p><strong>Answer:</strong> Yes! We offer:</p>
               <div class="mt-4 space-y-2">
-                <p>🔵 Live Demo Sessions</p>
-                <p>🔵 Recorded Sample Lectures</p>
+                <p>Live Demo Sessions</p>
+                <p>Recorded Sample Lectures</p>
               </div>
               <p class="mt-4"><strong>📌 Note:</strong> Register To Know Your Eligibility! 🎓</p>
             </div>
 
             <div *ngSwitchCase="23" class="pb-6">
-              <p><strong>🔵 Answer:</strong> Absolutely! We offer:</p>
+              <p><strong>Answer:</strong> Absolutely! We offer:</p>
               <div class="mt-4 space-y-2">
-                <p>🔵 Live Alumni Networking Events</p>
-                <p>🔵 Mentorship Online Programmes</p>
+                <p>Live Alumni Networking Events</p>
+                <p>Mentorship Online Programmes</p>
               </div>
               <p class="mt-4"><strong>💡 Note:</strong> Connect with alumni working at top global companies and gain valuable career advice!</p>
             </div>
 
             <div *ngSwitchCase="24" class="pb-6">
-              <p><strong>🔵 Answer:</strong> Yes! Please Think From The Employers Perspective or The Project Perspective</p>
+              <p><strong>Answer:</strong> Yes! Please Think From The Employers Perspective or The Project Perspective</p>
               <p class="mt-4">They are looking for an end to end solutions providing employee...</p>
               <p class="mt-4"><strong>📌 Note:</strong> "Take the Skill Assessment to discover the competencies that match you!"</p>
             </div>
 
             <div *ngSwitchCase="25" class="pb-6">
-              <p><strong>🔵 Answer:</strong> Our structured approach ensures a seamless career switch by:</p>
+              <p><strong>Answer:</strong> Our structured approach ensures a seamless career switch by:</p>
               <div class="mt-4 space-y-2">
-                <p>🔵 Developing essential technical skills</p>
-                <p>🔵 Providing hands-on project experience</p>
-                <p>🔵 Delivering comprehensive job interview with right answers</p>
-                <p>🔵 Technique Based Program that works</p>
-                <p>🔵 Reputation Building & referrals & Documentation & resume</p>
-                <p>🔵 After Job Support until Probation</p>
+                <p>Developing essential technical skills</p>
+                <p>Providing hands-on project experience</p>
+                <p>Delivering comprehensive job interview with right answers</p>
+                <p>Technique Based Program that works</p>
+                <p>Reputation Building & referrals & Documentation & resume</p>
+                <p>After Job Support until Probation</p>
               </div>
               <p class="mt-4"><strong>💡 Real Success:</strong> Sarah, a former teacher, became a Tech Leader in just 11 months!</p>
             </div>
@@ -340,37 +358,37 @@
         <div [class.expanded]="isExpanded(4, i)" class="faq-content px-8">
           <ng-container [ngSwitch]="faqIndex">
             <div *ngSwitchCase="26" class="pb-6">
-              <p><strong>🔵 Answer:</strong> Our fee structure is highly competitive and includes 7 Services To Success.</p>
+              <p><strong>Answer:</strong> Our fee structure is highly competitive and includes 7 Services To Success.</p>
               <p class="mt-4"><strong>💰 Note:</strong> Flexible Payment Options: Scholarships and installment plans are available in-class to support your learning journey.</p>
             </div>
 
             <div *ngSwitchCase="27" class="pb-6">
-              <p><strong>🔵 Answer:</strong> Getting started is quick and simple:</p>
+              <p><strong>Answer:</strong> Getting started is quick and simple:</p>
               <div class="mt-4 space-y-2">
-                <p>⿡ Register online if eligible you will receive confirmation.</p>
-                <p>⿢ Pay Token Of Your Seriousness As Fees.</p>
-                <p>⿣ Start learning and transforming your career!</p>
+                <p>Register online if eligible you will receive confirmation.</p>
+                <p>Pay Token Of Your Seriousness As Fees.</p>
+                <p>Start learning and transforming your career!</p>
               </div>
               <p class="mt-4"><strong>📌 Need assistance?</strong> Connect with chatbot (available 24/7 for support!)</p>
             </div>
 
             <div *ngSwitchCase="28" class="pb-6">
-              <p><strong>🔵 Answer:</strong> Yes—if you focus.</p>
+              <p><strong>Answer:</strong> Yes—if you focus.</p>
               <div class="mt-4 space-y-2">
-                <p>❌ If you spend time on distractions like social media, irrelevant news, or entertainment that doesn't add value, 6 months will pass with no progress.</p>
-                <p>✅ If you prioritize learning and growth, 6 months is more than enough to transform your career.</p>
+                <p>If you spend time on distractions like social media, irrelevant news, or entertainment that doesn't add value, 6 months will pass with no progress.</p>
+                <p>If you prioritize learning and growth, 6 months is more than enough to transform your career.</p>
               </div>
               <p class="mt-4">Your success depends on where you invest your time.</p>
             </div>
 
             <div *ngSwitchCase="29" class="pb-6">
-              <p><strong>🔵 Answer:</strong> We appreciate your enthusiasm!</p>
+              <p><strong>Answer:</strong> We appreciate your enthusiasm!</p>
               <p class="mt-4">Our program is already packed with immense value to help you achieve career success. However, we do offer exclusive referral bonuses for those who bring in serious learners.</p>
               <p class="mt-4">Let us know if you have any other questions—we're here to help!</p>
             </div>
 
             <div *ngSwitchCase="30" class="pb-6">
-              <p><strong>🔵 Answer:</strong> Yes! The webinar recording is available in the Learning Management System (LMS).</p>
+              <p><strong>Answer:</strong> Yes! The webinar recording is available in the Learning Management System (LMS).</p>
               <p class="mt-4">Simply unlock it with a token of seriousness, and gain on-demand access to all the insights and strategies shared.</p>
             </div>
           </ng-container>
@@ -379,11 +397,23 @@
 
       <!-- Call to Action -->
       <div class="mt-12 text-center">
-        <h3 class="text-xl font-bold mb-4">🚀 Next Steps: Take Action Today!</h3>
-        <div class="space-y-2">
-          <p>📌 💡 Ready to Upskill? Enrol Now & Secure Your Future!</p>
-          <p>📌 🎤 Have Questions? Speak to a Career Advisor!</p>
-          <p>📌 🔥 Need a Trial? Book a Free Webinar!</p>
+        <!-- Bottom CTA Button -->
+        <div class="flex justify-center">
+          <button 
+             class="group relative w-auto cursor-pointer overflow-hidden rounded-full border bg-white p-2 px-6 text-center font-semibold inline-flex">
+            <div class="flex items-center gap-2">
+              <div class="h-2 w-2 rounded-full bg-blue-600 transition-transform duration-300 group-hover:scale-[100] absolute left-2 top-1/2 -translate-y-1/2 will-change-transform"></div>
+              <span class="relative z-10 inline-block transition-transform duration-300 group-hover:translate-x-12 group-hover:opacity-0">
+                Watch Webinar Replay
+              </span>
+            </div>
+            <div class="absolute left-0 top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-white opacity-0 transition-all duration-300 group-hover:-translate-x-0 group-hover:opacity-100">
+              <span>Watch Webinar Replay</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </div>
+          </button>
         </div>
       </div>
     </div>
