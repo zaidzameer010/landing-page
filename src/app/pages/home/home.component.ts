@@ -5,7 +5,6 @@ import { ServicesComponent } from '../../components/services/services.component'
 import { CeoComponent } from '../../components/ceo/ceo.component';
 import { BenefitsComponent } from '../../components/benefits/benefits.component';
 import { LogoCarouselComponent } from '../../components/logo-carousel/logo-carousel.component';
-import { TestimonialsComponent } from '../../components/testimonials/testimonials.component';
 
 @Component({
   selector: 'app-home',
@@ -16,8 +15,7 @@ import { TestimonialsComponent } from '../../components/testimonials/testimonial
     ServicesComponent,
     CeoComponent,
     BenefitsComponent,
-    LogoCarouselComponent,
-    TestimonialsComponent
+    LogoCarouselComponent
   ],
   template: `
     <app-hero></app-hero>
@@ -25,7 +23,6 @@ import { TestimonialsComponent } from '../../components/testimonials/testimonial
     <app-benefits></app-benefits>
     <app-ceo></app-ceo>
     <app-logo-carousel></app-logo-carousel>
-    <app-testimonials></app-testimonials>
   `
 })
 export class HomeComponent {}

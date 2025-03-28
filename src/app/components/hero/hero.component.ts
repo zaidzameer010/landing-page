@@ -221,4 +221,19 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
     // Try initial playback
     handlePlayback();
   }
+
+  /**
+   * Scrolls the page down to the next section
+   * Triggered by the scroll down button click
+   */
+  scrollToNextSection(): void {
+    // Get the hero section height
+    const heroHeight = this.el.nativeElement.offsetHeight;
+    
+    // Scroll to the position just below the hero section
+    window.scrollTo({
+      top: heroHeight,
+      behavior: 'smooth'
+    });
+  }
 }
