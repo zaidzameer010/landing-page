@@ -29,7 +29,7 @@ import { filter, Subscription } from 'rxjs';
                </div>
                <div class="footer-item">
                  <div class="footer-icon-container">
-                   <i class="fas fa-phone footer-icon"></i>
+                   <i class="fab fa-whatsapp footer-icon"></i>
                  </div>
                  <span class="footer-text">971-585-786-989</span>
                </div>
