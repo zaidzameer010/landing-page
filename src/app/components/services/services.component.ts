@@ -1,10 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SectionTitleComponent } from '../section-title/section-title.component';
-
-gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-services',
@@ -57,16 +54,9 @@ export class ServicesComponent implements OnInit, AfterViewInit {
 
   private initAnimations() {
     if (this.serviceCards) {
-      // Animate each service card
+      // Animate each service card with simple animations
       this.serviceCards.forEach((card, index) => {
         gsap.from(card.nativeElement, {
-          scrollTrigger: {
-            trigger: card.nativeElement,
-            start: 'top 80%', // Start animation when the top of the card hits 80% of the viewport
-            end: 'bottom 20%', // End animation when the bottom of the card hits 20% of the viewport
-            toggleActions: 'play none none reverse', // Play on enter, pause on leave, none on leave-back, reverse on enter-back
-            markers: false // Remove in production
-          },
           opacity: 0,
           y: 50,
           duration: 0.6,

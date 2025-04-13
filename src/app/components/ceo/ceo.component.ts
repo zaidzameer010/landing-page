@@ -1,8 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-ceo',
@@ -58,20 +55,6 @@ export class CeoComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private initAnimations() {
-    // Parallax effect for background with optimized performance
-    gsap.to(this.parallaxBg.nativeElement, {
-      scrollTrigger: {
-        trigger: this.parallaxBg.nativeElement,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 0.5,  // Reduced scrub time for smoother parallax
-        invalidateOnRefresh: true  // Ensure proper updates on resize
-      },
-      y: '20%',  // Reduced movement range
-      ease: 'none',
-      force3D: true  // Hardware acceleration
-    });
-
     // Floating animation for decorative elements with reduced movement
     const decorativeElements = document.querySelectorAll('.backdrop-blur-lg');
     decorativeElements.forEach((element: Element) => {

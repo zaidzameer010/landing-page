@@ -1,9 +1,6 @@
 import { Component, OnInit, ElementRef, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-hero',
@@ -15,7 +12,6 @@ gsap.registerPlugin(ScrollTrigger);
 export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('heroVideo') private videoElement!: ElementRef<HTMLVideoElement>;
   private timeline: gsap.core.Timeline;
-  private parallaxElements: ScrollTrigger[] = [];
   private videoEventListeners: { event: string; listener: EventListener }[] = [];
 
   constructor(private el: ElementRef) {
@@ -26,7 +22,6 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.initAnimations();
-    this.initParallax();
   }
 
   ngAfterViewInit(): void {
@@ -38,9 +33,6 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.timeline) {
       this.timeline.kill();
     }
-    
-    // Clean up scroll triggers
-    this.parallaxElements.forEach(trigger => trigger.kill());
     
     // Clean up video event listeners
     if (this.videoElement?.nativeElement) {
@@ -93,51 +85,6 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
       stagger: 0.2,
       ease: 'elastic.out(1, 0.5)'
     }, '>-0.2');
-  }
-
-  private initParallax(): void {
-    const element = this.el.nativeElement;
-
-    // Parallax effect for background elements
-    const bgElements = element.querySelectorAll('.parallax-bg');
-    bgElements.forEach((el: Element, index: number) => {
-      const trigger = ScrollTrigger.create({
-        trigger: element,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1,
-        onUpdate: (self) => {
-          const yPos = self.progress * 100 * (index + 1) * (index % 2 ? 1 : -1);
-          gsap.to(el, {
-            y: yPos,
-            rotation: yPos / 10,
-            duration: 0.5,
-            ease: 'none'
-          });
-        }
-      });
-      this.parallaxElements.push(trigger);
-    });
-
-    // Subtle parallax for content elements
-    const contentElements = element.querySelectorAll('.parallax-element');
-    contentElements.forEach((el: Element, index: number) => {
-      const trigger = ScrollTrigger.create({
-        trigger: element,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1,
-        onUpdate: (self) => {
-          const yPos = self.progress * 30 * (index % 2 ? 1 : -1);
-          gsap.to(el, {
-            y: yPos,
-            duration: 0.5,
-            ease: 'none'
-          });
-        }
-      });
-      this.parallaxElements.push(trigger);
-    });
   }
 
   private initVideo(): void {
