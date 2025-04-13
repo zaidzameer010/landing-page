@@ -12,13 +12,16 @@
   html, body {
     margin: 0;
     padding: 0;
+  }
+  
+  /* Applied only when smooth scroll is active */
+  body.smooth-scroll-active {
     overflow: hidden;
     height: 100%;
     width: 100%;
     position: fixed;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: none;
-    background-color: white;
   }
 
   #smooth-wrapper {
