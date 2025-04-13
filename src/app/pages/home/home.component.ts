@@ -5,6 +5,7 @@ import { ServicesComponent } from '../../components/services/services.component'
 import { CeoComponent } from '../../components/ceo/ceo.component';
 import { BenefitsComponent } from '../../components/benefits/benefits.component';
 import { LogoCarouselComponent } from '../../components/logo-carousel/logo-carousel.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ import { LogoCarouselComponent } from '../../components/logo-carousel/logo-carou
     ServicesComponent,
     CeoComponent,
     BenefitsComponent,
-    LogoCarouselComponent
+    LogoCarouselComponent,
+    FooterComponent
   ],
   template: `
     <app-hero></app-hero>
@@ -23,6 +25,7 @@ import { LogoCarouselComponent } from '../../components/logo-carousel/logo-carou
     <app-benefits></app-benefits>
     <app-ceo></app-ceo>
     <app-logo-carousel></app-logo-carousel>
+    <app-footer></app-footer>
   `
 })
 export class HomeComponent {}
