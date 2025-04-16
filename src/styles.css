@@ -22,6 +22,10 @@
     position: fixed;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   #smooth-wrapper {
@@ -32,12 +36,24 @@
     left: 0;
     overflow: hidden;
     will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 
   #smooth-content {
     width: 100%;
     position: relative;
     will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 
   /* Hide scrollbar for Chrome, Safari and Opera */

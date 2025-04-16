@@ -16,12 +16,18 @@ export class ScrollSmootherService {
   private scrollTop = 0;
   private targetScrollTop = 0;
   private ease = 0.1;
+  private isMobile = false;
   
   // Add scroll position subject
   private scrollPosition = new BehaviorSubject<number>(0);
   scrollPosition$ = this.scrollPosition.asObservable();
 
-  constructor(private ngZone: NgZone) {}
+  constructor(private ngZone: NgZone) {
+    this.isMobile = window.innerWidth <= 768;
+    if (this.isMobile) {
+      this.ease = 0.2; // Faster easing on mobile
+    }
+  }
 
   init(): void {
     this.wrapper = document.getElementById('smooth-wrapper');
@@ -40,7 +46,10 @@ export class ScrollSmootherService {
         height: '100%',
         top: 0,
         left: 0,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        willChange: 'transform',
+        backfaceVisibility: 'hidden',
+        perspective: 1000
       });
 
       // Set body height to match content
@@ -71,8 +80,10 @@ export class ScrollSmootherService {
     this.scrollTop += (this.targetScrollTop - this.scrollTop) * this.ease;
     
     if (this.content) {
+      // Use transform3d for better performance on mobile
       gsap.set(this.content, {
-        y: -this.scrollTop
+        y: -this.scrollTop,
+        force3D: true
       });
 
       // Update scroll position
@@ -81,7 +92,8 @@ export class ScrollSmootherService {
       ScrollTrigger.update();
     }
 
-    this.raf = requestAnimationFrame(() => this.animate());
+    // Use requestAnimationFrame with timestamp for better performance
+    this.raf = requestAnimationFrame((timestamp) => this.animate());
   }
 
   private onWheel(e: WheelEvent): void {
@@ -103,8 +115,9 @@ export class ScrollSmootherService {
     e.preventDefault();
     const delta = this.touchY - e.touches[0].clientY;
     const maxScroll = (this.content?.scrollHeight || 0) - window.innerHeight;
+    // Add momentum scrolling effect for mobile
     this.targetScrollTop = Math.max(0, 
-      Math.min(this.lastY + delta, maxScroll));
+      Math.min(this.lastY + delta * (this.isMobile ? 1.5 : 1), maxScroll));
   }
 
   scrollTo(target: number | string | HTMLElement): void {
