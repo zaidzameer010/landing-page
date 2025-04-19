@@ -5,6 +5,7 @@ import { ServicesComponent } from '../../components/services/services.component'
 import { CeoComponent } from '../../components/ceo/ceo.component';
 import { BenefitsComponent } from '../../components/benefits/benefits.component';
 import { LogoCarouselComponent } from '../../components/logo-carousel/logo-carousel.component';
+import { WebinarRegistrationComponent } from '../../components/webinar-registration/webinar-registration.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
@@ -17,6 +18,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
     CeoComponent,
     BenefitsComponent,
     LogoCarouselComponent,
+    WebinarRegistrationComponent,
     FooterComponent
   ],
   template: `
@@ -25,6 +27,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
     <app-benefits></app-benefits>
     <app-ceo></app-ceo>
     <app-logo-carousel></app-logo-carousel>
+    <app-webinar-registration></app-webinar-registration>
     <app-footer></app-footer>
   `
 })
