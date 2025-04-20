@@ -11,7 +11,7 @@ interface Logo {
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="bg-gradient-to-br from-blue-50/40 via-white to-blue-50/40 py-12">
+    <div class="bg-gradient-to-b from-white via-blue-50/40 pt-12 relative">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-500 mb-6 section-title">Our Partners</h2>
         <div class="divider-container flex justify-center mb-10">
