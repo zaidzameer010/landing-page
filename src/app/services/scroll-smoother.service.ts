@@ -98,7 +98,7 @@ export class ScrollSmootherService {
 
   private onWheel(e: WheelEvent): void {
     e.preventDefault();
-    const footer = document.querySelector('footer');
+    const footer = document.querySelector('footer') as HTMLElement;
     const maxScroll = footer ? footer.offsetTop - window.innerHeight : (this.content?.scrollHeight || 0) - window.innerHeight;
     this.targetScrollTop = Math.max(0, 
       Math.min(this.targetScrollTop + e.deltaY, maxScroll));
@@ -115,7 +115,7 @@ export class ScrollSmootherService {
   private onTouchMove(e: TouchEvent): void {
     e.preventDefault();
     const delta = this.touchY - e.touches[0].clientY;
-    const footer = document.querySelector('footer');
+    const footer = document.querySelector('footer') as HTMLElement;
     const maxScroll = footer ? footer.offsetTop - window.innerHeight : (this.content?.scrollHeight || 0) - window.innerHeight;
     // Add momentum scrolling effect for mobile
     this.targetScrollTop = Math.max(0, 
@@ -136,7 +136,7 @@ export class ScrollSmootherService {
       targetY = target.getBoundingClientRect().top + this.targetScrollTop;
     }
 
-    const footer = document.querySelector('footer');
+    const footer = document.querySelector('footer') as HTMLElement;
     const maxScroll = footer ? footer.offsetTop - window.innerHeight : (this.content?.scrollHeight || 0) - window.innerHeight;
     this.targetScrollTop = Math.max(0, Math.min(targetY, maxScroll));
   }
