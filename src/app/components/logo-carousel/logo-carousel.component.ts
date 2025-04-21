@@ -12,11 +12,13 @@ interface Logo {
   imports: [CommonModule],
   template: `
     <div class="bg-gradient-to-b from-white via-blue-50/40 pt-12 relative">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-500 mb-6 section-title">Our Partners</h2>
-        <div class="divider-container flex justify-center mb-10">
-          <div class="w-24 h-1 rounded-full bg-gradient-to-r from-blue-400 to-indigo-500"></div>
-        </div>
+      <div class="container text-center mx-auto px-4">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 tracking-tight mb-4">
+        Our Partners
+      </h2>
+      <div class="divider-container flex justify-center mb-10">
+        <div class="w-24 h-1 rounded-full bg-gradient-to-r from-blue-400 to-indigo-500"></div>
+      </div>
         
         <div class="max-w-4xl mx-auto">
           <!-- Static logo grid with center alignment -->
