@@ -188,13 +188,5 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
    * Scrolls to the webinar registration section
    * Triggered by the Register Now button click
    */
-  scrollToWebinarSection(): void {
-    const registerForm = document.getElementById('register-form');
-    if (registerForm) {
-      registerForm.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  }
+  // Remove the scrollToWebinarSection() method
 }

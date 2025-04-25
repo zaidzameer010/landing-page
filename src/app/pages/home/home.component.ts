@@ -5,7 +5,7 @@ import { ServicesComponent } from '../../components/services/services.component'
 import { CeoComponent } from '../../components/ceo/ceo.component';
 import { BenefitsComponent } from '../../components/benefits/benefits.component';
 import { LogoCarouselComponent } from '../../components/logo-carousel/logo-carousel.component';
-import { WebinarRegistrationComponent } from '../../components/webinar-registration/webinar-registration.component';
+// Remove the import for WebinarRegistrationComponent
 import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
@@ -18,17 +18,19 @@ import { FooterComponent } from '../../components/footer/footer.component';
     CeoComponent,
     BenefitsComponent,
     LogoCarouselComponent,
-    WebinarRegistrationComponent,
+    // Remove WebinarRegistrationComponent from imports
     FooterComponent
   ],
   template: `
     <app-hero></app-hero>
     <app-services></app-services>
-    <app-benefits></app-benefits>
     <app-ceo></app-ceo>
+    <app-benefits></app-benefits>
     <app-logo-carousel></app-logo-carousel>
-    <app-webinar-registration></app-webinar-registration>
+    <!-- Remove the app-webinar-registration component from the template -->
     <app-footer></app-footer>
   `
 })
-export class HomeComponent {}
+export class HomeComponent {
+  // Remove any methods related to the webinar registration component
+}

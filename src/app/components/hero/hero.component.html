@@ -1,19 +1,5 @@
 <div class="relative min-h-[100vh] bg-gradient-to-b from-blue-50 to-white overflow-hidden">
-  <!-- Video Background with hardware acceleration -->
-  <div class="absolute inset-0 w-full h-full z-0">
-    <video
-      #heroVideo
-      class="w-full h-full object-cover opacity-80 transform-gpu"
-      autoplay
-      loop
-      muted
-      playsinline
-      preload="auto">
-      <source src="assets/orb.mp4" type="video/mp4">
-      <source src="/assets/orb.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
+  <!-- Video Background removed -->
   
   <!-- Noise texture overlay -->
   <div class="noise-texture will-change-transform"></div>
@@ -35,9 +21,9 @@
     
     <!-- CTA Buttons -->
     <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 animate-slide-up delay-300 w-full sm:w-auto px-4 sm:px-0 transform-gpu">
-      <!-- Register button -->
-      <button (click)="scrollToWebinarSection()" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-blue-500/50 transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
-        Register Now
+      <!-- Register button - Updated to use scrollToNextSection instead -->
+      <button (click)="scrollToNextSection()" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-blue-500/50 transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
+        Get Started
       </button>
     </div>
   </div>
