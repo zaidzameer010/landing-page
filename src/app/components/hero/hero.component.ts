@@ -174,19 +174,25 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
    * Triggered by the scroll down button click
    */
   scrollToNextSection(): void {
-    // Get the hero section height
-    const heroHeight = this.el.nativeElement.offsetHeight;
+    // Find the registration form element by ID or class
+    const registrationForm = document.querySelector('iframe[aria-label="Be The Top 1% In IT Industry"]');
     
-    // Scroll to the position just below the hero section
-    window.scrollTo({
-      top: heroHeight,
-      behavior: 'smooth'
-    });
+    if (registrationForm) {
+      // If form is found, scroll to it
+      registrationForm.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Fallback: scroll to the logo-carousel section which is just before the form
+      const logoCarousel = document.querySelector('.logo-carousel');
+      if (logoCarousel) {
+        logoCarousel.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // If neither is found, use the original behavior
+        const heroHeight = this.el.nativeElement.offsetHeight;
+        window.scrollTo({
+          top: heroHeight,
+          behavior: 'smooth'
+        });
+      }
+    }
   }
-
-  /**
-   * Scrolls to the webinar registration section
-   * Triggered by the Register Now button click
-   */
-  // Remove the scrollToWebinarSection() method
 }
