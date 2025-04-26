@@ -31,8 +31,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     <div class="bg-gradient-to-b from-blue-50/30 to-indigo-50/20 py-16">
       <div class="container mx-auto px-4">
         <div class="max-w-5xl mx-auto">
-          <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 tracking-tight mb-6">
-            Join The IT Elite
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 tracking-tight mb-6">
+            Be The Irreplaceable
           </h2>
           <p class="text-gray-700 text-center text-lg mb-8 max-w-3xl mx-auto">
             Take the first step towards becoming part of the top 1% in the IT industry. Complete the form below to begin your journey.
